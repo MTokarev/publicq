@@ -407,6 +407,7 @@ public class SessionService(
                     StartedAtUtc = progress?.StartedAtUtc,
                     CompletedAtUtc = progress?.CompletedAtUtc,
                     DurationInMinutes = progress?.DurationInMinutes,
+                    TimeRemaining = progress?.TimeRemaining,
                     Status = status,
                     Passed = showScore ? progress?.Passed : null,
                     PassingScorePercentage = showScore ? progress?.PassingScorePercentage : null,
