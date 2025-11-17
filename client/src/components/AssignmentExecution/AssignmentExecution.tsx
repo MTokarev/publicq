@@ -567,11 +567,11 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
     if (memberState.durationInMinutes && memberState.startedAtUtc) {
       // Use server-calculated time remaining to prevent clock manipulation (TimeSpan format: "HH:MM:SS")
       let remainingMinutes = 0;
-      if (memberState.timeRemaining) {
+      if (memberState.timeRemaining && typeof memberState.timeRemaining === 'string') {
         const parts = memberState.timeRemaining.split(':');
-        const hours = parseInt(parts[0] || '0');
-        const minutes = parseInt(parts[1] || '0');
-        const seconds = parseInt(parts[2] || '0');
+        const hours = parseInt(parts[0] || '0', 10);
+        const minutes = parseInt(parts[1] || '0', 10);
+        const seconds = parseInt(parts[2] || '0', 10);
         const totalSeconds = hours * 3600 + minutes * 60 + seconds;
         remainingMinutes = Math.ceil(totalSeconds / 60);
       }
@@ -626,7 +626,27 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         assignment.groupId
       );
       
-      setGroupMemberStates(memberStatesResponse.data || []);
+      // Map the response to ensure all fields including timeRemaining are included
+      const memberStates = (memberStatesResponse.data || []).map((member: any) => ({
+        id: member.id,
+        name: member.assessmentModuleTitle || member.name || '',
+        status: member.status,
+        groupId: member.groupId,
+        orderNumber: member.orderNumber,
+        assessmentModuleId: member.assessmentModuleId,
+        assessmentModuleTitle: member.assessmentModuleTitle,
+        assessmentModuleDescription: member.assessmentModuleDescription,
+        startedAtUtc: member.startedAtUtc,
+        completedAtUtc: member.completedAtUtc,
+        durationInMinutes: member.durationInMinutes,
+        timeRemaining: member.timeRemaining,
+        staticFileUrls: member.staticFileUrls,
+        passed: member.passed,
+        passingScorePercentage: member.passingScorePercentage,
+        scorePercentage: member.scorePercentage,
+      }));
+      
+      setGroupMemberStates(memberStates);
     } catch (error) {
       // Failed to refresh group member states
     }
