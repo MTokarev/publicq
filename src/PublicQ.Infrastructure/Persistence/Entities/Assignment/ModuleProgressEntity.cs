@@ -82,6 +82,25 @@ public class ModuleProgressEntity
     public DateTime? CompletedAtUtc { get; set; }
     
     /// <summary>
+    /// Gets the remaining time for this module.
+    /// Returns null if module hasn't started or has no duration limit.
+    /// Returns TimeSpan.Zero if time has expired.
+    /// </summary>
+    public TimeSpan? TimeRemaining
+    {
+        get
+        {
+            if (StartedAtUtc == null || DurationInMinutes == 0)
+                return null;
+
+            var endTime = StartedAtUtc.Value.AddMinutes(DurationInMinutes);
+            var remaining = endTime - DateTime.UtcNow;
+            
+            return remaining > TimeSpan.Zero ? remaining : TimeSpan.Zero;
+        }
+    }
+    
+    /// <summary>
     /// Gets or sets the score achieved on this module as a percentage.
     /// Represents the student's performance on this module's assessment content.
     /// </summary>
@@ -239,6 +258,7 @@ public class ModuleProgressEntity
             DurationInMinutes = DurationInMinutes,
             StartedAtUtc = StartedAtUtc,
             CompletedAtUtc = CompletedAtUtc,
+            TimeRemaining = TimeRemaining,
             ScorePercentage = ScorePercentage ?? 0,
             PassingScorePercentage = AssessmentModuleVersion.PassingScorePercentage,
             ExamTakerAssignmentId = ExamTakerAssignmentId,

@@ -54,6 +54,16 @@ public class ModuleProgressDto
     public DateTime? CompletedAtUtc { get; set; }
     
     /// <summary>
+    /// Gets the remaining time for this module.
+    /// Server-calculated to prevent client-side clock manipulation.
+    /// </summary>
+    /// <value>
+    /// TimeSpan representing remaining time, or null if module hasn't started or has no duration limit.
+    /// Returns TimeSpan.Zero if time has expired.
+    /// </value>
+    public TimeSpan? TimeRemaining { get; set; }
+    
+    /// <summary>
     /// Gets or sets the score achieved on this module as a percentage.
     /// Represents the student's performance on this module's assessment content.
     /// </summary>

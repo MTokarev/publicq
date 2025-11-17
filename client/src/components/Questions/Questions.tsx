@@ -158,20 +158,45 @@ const Questions: React.FC<QuestionsProps> = ({
 
   // Timer logic - update every second when module is active and has a time limit
   useEffect(() => {
-    // In demo mode, use the fixed demo start time from state
-    const startTime = demoMode 
-      ? demoStartTime
-      : moduleProgress?.startedAtUtc;
-
-    if (!startTime || !moduleVersion?.durationInMinutes) {
+    // Check if we have the necessary data for timer
+    if (!moduleVersion?.durationInMinutes) {
       return;
     }
 
     const updateTimer = () => {
-      const timeInfo = calculateModuleTimeRemaining(
-        startTime,
-        moduleVersion.durationInMinutes
-      );
+      let timeInfo;
+      
+      if (demoMode) {
+        // For demo mode, calculate client-side
+        timeInfo = calculateModuleTimeRemaining(
+          demoStartTime,
+          moduleVersion.durationInMinutes
+        );
+      } else if (moduleProgress?.timeRemaining) {
+        // Use server-calculated time remaining (TimeSpan format: "HH:MM:SS")
+        const parts = moduleProgress.timeRemaining.split(':');
+        const hours = parseInt(parts[0] || '0');
+        const minutes = parseInt(parts[1] || '0');
+        const seconds = parseInt(parts[2] || '0');
+        const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+        const totalMinutes = Math.ceil(totalSeconds / 60);
+        const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        
+        timeInfo = {
+          hasTimeRemaining: totalSeconds > 0,
+          isExpired: totalSeconds === 0,
+          totalMinutes,
+          hours,
+          minutes,
+          formattedTime,
+          formattedDisplay: totalSeconds > 0 
+            ? (hours > 0 ? `${hours}h ${minutes}m remaining` : `${minutes}m remaining`)
+            : 'Time Expired'
+        };
+      } else {
+        return;
+      }
+      
       setTimeRemaining(timeInfo);
       
       // Toggle colon visibility for blinking effect
@@ -190,7 +215,7 @@ const Questions: React.FC<QuestionsProps> = ({
     const interval = setInterval(updateTimer, 1000);
 
     return () => clearInterval(interval);
-  }, [demoMode, demoStartTime, moduleProgress?.startedAtUtc, moduleVersion?.durationInMinutes, showTimeExpiredModal]);
+  }, [demoMode, demoStartTime, moduleProgress?.timeRemaining, moduleVersion?.durationInMinutes, showTimeExpiredModal]);
 
   const loadModuleData = async () => {
     if (!state || !state.assignment || !state.groupMember || !state.user) {

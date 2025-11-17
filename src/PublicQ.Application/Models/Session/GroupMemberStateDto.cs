@@ -62,4 +62,14 @@ public class GroupMemberStateDto : GroupMemberDto
     /// Duration in minutes. Represents how much time is allowed for the test.
     /// </summary>
     public int? DurationInMinutes { get; set; }
+    
+    /// <summary>
+    /// Gets the remaining time for this module.
+    /// Server-calculated to prevent client-side clock manipulation.
+    /// </summary>
+    /// <value>
+    /// TimeSpan representing remaining time, or null if module hasn't started or has no duration limit.
+    /// Returns TimeSpan.Zero if time has expired.
+    /// </value>
+    public TimeSpan? TimeRemaining { get; set; }
 }

@@ -78,4 +78,16 @@ public abstract class AssignmentBaseDto
     /// When enabled, answers are presented in random order to reduce cheating opportunities.
     /// </summary>
     public bool RandomizeAnswers { get; set; }
+    
+    /// <summary>
+    /// Gets the server's current UTC time.
+    /// Used by clients to make date comparisons without relying on potentially manipulated local clocks.
+    /// </summary>
+    /// <value>The current UTC DateTime from the server.</value>
+    /// <remarks>
+    /// This prevents clock manipulation vulnerabilities where users could access assignments
+    /// outside their availability window by changing their local system time.
+    /// Clients should use this value instead of `new Date()` for all date comparisons.
+    /// </remarks>
+    public DateTime ServerUtcNow { get; set; } = DateTime.UtcNow;
 }

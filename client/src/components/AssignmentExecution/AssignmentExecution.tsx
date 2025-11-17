@@ -480,6 +480,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
             startedAtUtc: member.startedAtUtc,
             completedAtUtc: member.completedAtUtc,
             durationInMinutes: member.durationInMinutes,
+            timeRemaining: member.timeRemaining,
             staticFileUrls: member.staticFileUrls,
             passed: member.passed,
             passingScorePercentage: member.passingScorePercentage,
@@ -559,17 +560,21 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
     }
 
     const result: any = {};
-    const now = new Date(); // Current local time
     const statusEnum = convertToEnum(memberState.status);
     const isCompleted = statusEnum === ModuleStatus.Completed;
 
-    // If module has a duration limit, calculate remaining time
+    // If module has a duration limit, use server-calculated time remaining
     if (memberState.durationInMinutes && memberState.startedAtUtc) {
-      // Convert UTC string to local Date object
-      const startTime = new Date(memberState.startedAtUtc + 'Z'); // Ensure it's treated as UTC
-      const elapsedMilliseconds = now.getTime() - startTime.getTime();
-      const elapsedMinutes = Math.floor(elapsedMilliseconds / (1000 * 60));
-      const remainingMinutes = memberState.durationInMinutes - elapsedMinutes;
+      // Use server-calculated time remaining to prevent clock manipulation (TimeSpan format: "HH:MM:SS")
+      let remainingMinutes = 0;
+      if (memberState.timeRemaining) {
+        const parts = memberState.timeRemaining.split(':');
+        const hours = parseInt(parts[0] || '0');
+        const minutes = parseInt(parts[1] || '0');
+        const seconds = parseInt(parts[2] || '0');
+        const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+        remainingMinutes = Math.ceil(totalSeconds / 60);
+      }
       
       // Only show remaining time for non-completed modules
       if (remainingMinutes > 0 && !isCompleted) {

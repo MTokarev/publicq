@@ -47,6 +47,12 @@ export interface GroupMemberState extends GroupMember {
   durationInMinutes?: number;
 
   /**
+   * Remaining time calculated by server as TimeSpan (e.g., "00:45:30").
+   * Null if not started or no duration limit. "00:00:00" if expired.
+   */
+  timeRemaining?: string | null;
+
+  /**
    * Static file URLs associated with the module.
    */
   staticFileUrls?: string[];

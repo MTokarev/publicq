@@ -20,6 +20,12 @@ export interface AssignmentBase {
   description?: string;
 
   /**
+   * Server's current UTC time. Use this instead of new Date() for date comparisons
+   * to prevent clock manipulation vulnerabilities.
+   */
+  serverUtcNow?: string;
+
+  /**
    * Gets or sets when students can start taking the assessment.
    * Students cannot access the assignment before this date and time.
    */

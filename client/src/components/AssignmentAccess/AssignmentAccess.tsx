@@ -33,6 +33,7 @@ const AssignmentAccess: React.FC<AssignmentAccessProps> = ({
   const [mode, setMode] = useState<'guest' | 'authenticated'>('guest');
   const [examTakerInfo, setExamTakerInfo] = useState<ExamTakerState | null>(null);
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
+  const [serverTime, setServerTime] = useState<Date | null>(null);
   const loadingRef = useRef<boolean>(false);
   const requestCounterRef = useRef<number>(0);
 
@@ -50,9 +51,12 @@ const AssignmentAccess: React.FC<AssignmentAccessProps> = ({
 
   // Helper function to determine assignment status based on dates
   const getAssignmentStatus = (assignment: Assignment) => {
-    if (isBeforeNow(assignment.startDateUtc, currentTime)) {
+    // Use server time if available to prevent clock manipulation
+    const timeToUse = serverTime || currentTime;
+    
+    if (isBeforeNow(assignment.startDateUtc, timeToUse)) {
       return 'scheduled';
-    } else if (isBetweenDates(assignment.startDateUtc, assignment.endDateUtc, currentTime)) {
+    } else if (isBetweenDates(assignment.startDateUtc, assignment.endDateUtc, timeToUse)) {
       return 'active';
     } else {
       return 'ended';
@@ -204,6 +208,11 @@ const AssignmentAccess: React.FC<AssignmentAccessProps> = ({
         if (response && response.data) {
           const assignmentsData = response.data || [];
           setAssignments(assignmentsData);
+          
+          // Store server time from the first assignment if available
+          if (assignmentsData.length > 0 && assignmentsData[0].serverUtcNow) {
+            setServerTime(new Date(assignmentsData[0].serverUtcNow));
+          }
         } else {
           setError('Invalid response received from server');
         }
