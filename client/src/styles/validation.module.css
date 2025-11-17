@@ -1,0 +1,269 @@
+/* Shared Form Validation Styles
+ * Standardized error, success, and warning states for consistent form validation across the application
+ */
+
+/* Base Message Styles */
+.message {
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  margin: var(--spacing-sm) 0;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  line-height: 1.4;
+}
+
+.message--small {
+  padding: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  margin: var(--spacing-xs) 0;
+}
+
+.message--large {
+  padding: var(--spacing-lg);
+  font-size: var(--font-size-md);
+  margin: var(--spacing-md) 0;
+}
+
+/* Error Styles */
+.errorMessage {
+  color: var(--color-error);
+  background-color: var(--color-error-light);
+  border: 1px solid var(--color-error-border);
+}
+
+.errorMessage::before {
+  content: "⚠";
+  font-size: var(--font-size-md);
+  color: var(--color-error);
+  flex-shrink: 0;
+}
+
+.errorMessage--small::before {
+  font-size: var(--font-size-sm);
+}
+
+.errorMessage--large::before {
+  font-size: var(--font-size-lg);
+}
+
+/* Success Styles */
+.successMessage {
+  color: var(--color-success-dark);
+  background-color: var(--color-success-background);
+  border: 1px solid var(--color-success);
+}
+
+.successMessage::before {
+  content: "✓";
+  font-size: var(--font-size-md);
+  color: var(--color-success);
+  flex-shrink: 0;
+  font-weight: var(--font-weight-bold);
+}
+
+.successMessage--small::before {
+  font-size: var(--font-size-sm);
+}
+
+.successMessage--large::before {
+  font-size: var(--font-size-lg);
+}
+
+/* Warning Styles */
+.warningMessage {
+  color: var(--color-warning-dark);
+  background-color: var(--color-warning-background);
+  border: 1px solid var(--color-warning);
+}
+
+.warningMessage::before {
+  content: "⚠";
+  font-size: var(--font-size-md);
+  color: var(--color-warning);
+  flex-shrink: 0;
+}
+
+.warningMessage--small::before {
+  font-size: var(--font-size-sm);
+}
+
+.warningMessage--large::before {
+  font-size: var(--font-size-lg);
+}
+
+/* Info Styles */
+.infoMessage {
+  color: var(--color-primary-dark);
+  background-color: var(--color-primary-background);
+  border: 1px solid var(--color-primary);
+}
+
+.infoMessage::before {
+  content: "ℹ";
+  font-size: var(--font-size-md);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.infoMessage--small::before {
+  font-size: var(--font-size-sm);
+}
+
+.infoMessage--large::before {
+  font-size: var(--font-size-lg);
+}
+
+/* Field-level validation styles */
+.fieldError {
+  color: var(--color-error);
+  font-size: var(--font-size-xs);
+  margin: var(--spacing-xs) 0 0 0;
+  font-weight: var(--font-weight-medium);
+  display: block;
+}
+
+.fieldSuccess {
+  color: var(--color-success-dark);
+  font-size: var(--font-size-xs);
+  margin: var(--spacing-xs) 0 0 0;
+  font-weight: var(--font-weight-medium);
+  display: block;
+}
+
+.fieldWarning {
+  color: var(--color-warning-dark);
+  font-size: var(--font-size-xs);
+  margin: var(--spacing-xs) 0 0 0;
+  font-weight: var(--font-weight-medium);
+  display: block;
+}
+
+/* Form section validation styles */
+.formSection--error {
+  border-left: 4px solid var(--color-error);
+  padding-left: var(--spacing-md);
+  background-color: rgba(239, 68, 68, 0.02);
+}
+
+.formSection--success {
+  border-left: 4px solid var(--color-success);
+  padding-left: var(--spacing-md);
+  background-color: rgba(16, 185, 129, 0.02);
+}
+
+.formSection--warning {
+  border-left: 4px solid var(--color-warning);
+  padding-left: var(--spacing-md);
+  background-color: rgba(245, 158, 11, 0.02);
+}
+
+/* Input states (for use with existing input components) */
+.input--error {
+  border-color: var(--color-error) !important;
+}
+
+.input--error:focus {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.input--success {
+  border-color: var(--color-success) !important;
+}
+
+.input--success:focus {
+  border-color: var(--color-success) !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+.input--warning {
+  border-color: var(--color-warning) !important;
+}
+
+.input--warning:focus {
+  border-color: var(--color-warning) !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+}
+
+/* Validation list styles */
+.validationList {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-sm) 0;
+}
+
+.validationItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+}
+
+.validationItem--error {
+  color: var(--color-error);
+}
+
+.validationItem--error::before {
+  content: "✗";
+  color: var(--color-error);
+  font-weight: var(--font-weight-bold);
+  flex-shrink: 0;
+}
+
+.validationItem--success {
+  color: var(--color-success-dark);
+}
+
+.validationItem--success::before {
+  content: "✓";
+  color: var(--color-success);
+  font-weight: var(--font-weight-bold);
+  flex-shrink: 0;
+}
+
+.validationItem--warning {
+  color: var(--color-warning-dark);
+}
+
+.validationItem--warning::before {
+  content: "⚠";
+  color: var(--color-warning);
+  flex-shrink: 0;
+}
+
+/* Loading states for validation */
+.validationLoading {
+  color: var(--color-gray-600);
+  font-size: var(--font-size-xs);
+  font-style: italic;
+  margin: var(--spacing-xs) 0;
+}
+
+.validationLoading::before {
+  content: "⟳";
+  animation: spin 1s linear infinite;
+  margin-right: var(--spacing-xs);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .message {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+  
+  .message--large {
+    padding: var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+}

@@ -1,0 +1,29 @@
+/* FieldGroup Component Styles */
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-lg);
+}
+
+.fieldGroup:last-child {
+  margin-bottom: 0;
+}
+
+.fieldGroup--error {
+  /* Error styling managed by child components */
+  --field-color: var(--color-error);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fieldGroup {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .fieldGroup {
+    margin-bottom: var(--spacing-sm);
+  }
+}

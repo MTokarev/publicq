@@ -1,0 +1,290 @@
+/* EmailManagement Component Styles */
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+  padding: 0;
+  max-width: 800px;
+  font-family: var(--font-family-sans);
+}
+
+/* ===== TYPOGRAPHY ===== */
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-2xl);
+  color: var(--color-gray-900);
+  letter-spacing: -0.025em;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-gray-700);
+}
+
+.infoTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-700);
+  margin-bottom: var(--spacing-sm);
+}
+
+.infoText {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: var(--line-height-relaxed);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-gray-200);
+}
+
+.infoSection {
+  background-color: var(--color-gray-50);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  border: 1px solid var(--color-gray-200);
+  margin-bottom: var(--spacing-xl);
+}
+
+.infoCard {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--color-gray-200);
+}
+
+/* ===== FORMS ===== */
+.formGroup {
+  margin-bottom: var(--spacing-lg);
+}
+
+.formRow {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  margin-bottom: var(--spacing-sm);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  margin-right: var(--spacing-sm);
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.checkboxText {
+  user-select: none;
+}
+
+.input {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-gray-300);
+  background-color: var(--color-white);
+  box-sizing: border-box;
+  transition: all var(--transition-base);
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.input:disabled {
+  background-color: var(--color-gray-100);
+  cursor: not-allowed;
+}
+
+.select {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-gray-300);
+  background-color: var(--color-white);
+  box-sizing: border-box;
+  transition: all var(--transition-base);
+  outline: none;
+}
+
+.select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.select:disabled {
+  background-color: var(--color-gray-100);
+  cursor: not-allowed;
+}
+
+.helpText {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-500);
+  margin-top: var(--spacing-xs);
+}
+
+/* ===== BUTTONS ===== */
+.buttonGroup {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.saveButton {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--border-radius-md);
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.saveButton:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.resetButton {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-gray-300);
+  background-color: var(--color-white);
+  color: var(--color-gray-700);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.resetButton:hover:not(:disabled) {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-gray-400);
+}
+
+.resetButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== STATUS MESSAGES ===== */
+.error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--color-error-bg);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-error-border);
+}
+
+.success {
+  font-size: var(--font-size-sm);
+  color: var(--color-success);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--color-success-bg);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--color-success-border);
+}
+
+/* ===== LOADING STATES ===== */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px var(--spacing-lg);
+}
+
+.loadingText {
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-500);
+}
+
+/* ===== STATUS INDICATORS ===== */
+.statusEnabled {
+  color: var(--color-success);
+  font-weight: var(--font-weight-medium);
+}
+
+.statusDisabled {
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 640px) {
+  .formRow {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .saveButton,
+  .resetButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===== FOCUS STATES ===== */
+.checkbox:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.saveButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.resetButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

@@ -1,0 +1,162 @@
+.container {
+  min-height: calc(100vh - 60px);
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.bodySection {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.metaInfo {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.meta strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contactItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contactIcon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.contactDetails {
+  flex: 1;
+}
+
+.contactLabel {
+  font-size: 0.9rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.contactLink {
+  font-size: 1.2rem;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.contactLink:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+.contactText {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.error {
+  color: #ff6b6b;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .content {
+    padding: 2rem 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .contactItem {
+    padding: 1rem;
+  }
+
+  .contactIcon {
+    font-size: 1.5rem;
+  }
+
+  .contactLink,
+  .contactText {
+    font-size: 1rem;
+  }
+}

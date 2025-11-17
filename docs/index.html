@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PublicQ - Comprehensive Assessment Platform">
+    <title>PublicQ - Assessment Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>PublicQ</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="#documentation">Documentation</a></li>
+                    <li><a href="https://github.com/MTokarev/publicq" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Comprehensive Assessment Platform</h2>
+                <p>Build, manage, and deploy educational and professional assessments with ease</p>
+                <div class="cta-buttons">
+                    <a href="#getting-started" class="btn btn-primary">Get Started</a>
+                    <a href="https://github.com/MTokarev/publicq" class="btn btn-secondary" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Assessment Management</h3>
+                        <p>Create custom assessments with version control and multiple question types</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Role-Based Access</h3>
+                        <p>Seven distinct roles with hierarchical permissions for complete access control</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Analytics & Reporting</h3>
+                        <p>Detailed reports and performance tracking with data visualization</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI-Powered</h3>
+                        <p>AI Monkey 🐵 for smart question generation and content assistance</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Secure</h3>
+                        <p>JWT authentication, input validation, and comprehensive security features</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>High Performance</h3>
+                        <p>Redis caching, optimized queries, and efficient data handling</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="getting-started" class="getting-started">
+            <div class="container">
+                <h2>Getting Started</h2>
+                <div class="install-methods">
+                    <div class="install-card">
+                        <h3>🐳 Docker (Easiest)</h3>
+                        <pre><code>docker run -d \
+  --name publicq \
+  -p 8080:8080 \
+  -v publicq_data:/app/data \
+  -v publicq_uploads:/app/uploads \
+  mtokarevv/publicq-app:latest</code></pre>
+                        <p>Access at <a href="http://localhost:8080">http://localhost:8080</a></p>
+                    </div>
+                    <div class="install-card">
+                        <h3>💻 Local Development</h3>
+                        <pre><code># Build frontend
+cd client && npm install && npm run build
+
+# Run backend
+cd src/PublicQ.API
+dotnet restore
+dotnet ef database update --context ApplicationDbContext
+dotnet run</code></pre>
+                        <p>Access at <a href="http://localhost:5188">http://localhost:5188</a></p>
+                    </div>
+                </div>
+                <div class="default-credentials">
+                    <h3>Default Admin Account</h3>
+                    <p><strong>Email:</strong> admin@publicq.local</p>
+                    <p><strong>Password:</strong> admin</p>
+                    <p class="warning">⚠️ Change the password immediately after first login!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="documentation" class="documentation">
+            <div class="container">
+                <h2>Documentation</h2>
+                <div class="doc-grid">
+                    <div class="doc-card">
+                        <h3>📚 User Guide</h3>
+                        <p>Learn how to use PublicQ for creating and managing assessments</p>
+                        <a href="https://github.com/MTokarev/publicq#-usage-guide">Read More →</a>
+                    </div>
+                    <div class="doc-card">
+                        <h3>🏗️ Architecture</h3>
+                        <p>Understand the system architecture and technical design</p>
+                        <a href="https://github.com/MTokarev/publicq#%EF%B8%8F-architecture">Read More →</a>
+                    </div>
+                    <div class="doc-card">
+                        <h3>🔧 API Reference</h3>
+                        <p>Explore API endpoints and integration options</p>
+                        <a href="https://github.com/MTokarev/publicq#-api-endpoints">Read More →</a>
+                    </div>
+                    <div class="doc-card">
+                        <h3>🤝 Contributing</h3>
+                        <p>Guidelines for contributing to the project</p>
+                        <a href="https://github.com/MTokarev/publicq#-contributing">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tech-stack">
+            <div class="container">
+                <h2>Built With</h2>
+                <div class="tech-badges">
+                    <span class="badge">.NET 10</span>
+                    <span class="badge">React 19</span>
+                    <span class="badge">TypeScript</span>
+                    <span class="badge">Entity Framework Core</span>
+                    <span class="badge">Redis</span>
+                    <span class="badge">SQLite</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PublicQ. Licensed under MIT License.</p>
+            <p>Made with ❤️ by the PublicQ Team</p>
+        </div>
+    </footer>
+</body>
+</html>

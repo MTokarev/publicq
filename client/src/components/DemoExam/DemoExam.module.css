@@ -1,0 +1,380 @@
+/* DemoExam Component Styles */
+
+/* ==================== START SCREEN ==================== */
+
+.startScreen {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.startCard {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.demoBadge {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 16px 0;
+}
+
+.description {
+  font-size: 18px;
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.feature {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.featureIcon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.feature strong {
+  display: block;
+  color: #2d3748;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.feature p {
+  margin: 0;
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.info {
+  background: #edf2f7;
+  border-left: 4px solid #667eea;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.info p {
+  margin: 0;
+  color: #4a5568;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.navigationTips {
+  background: #f0f9ff;
+  border-left: 4px solid #3b82f6;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.tipsTitle {
+  margin: 0 0 12px 0;
+  color: #2d3748;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.tipsList {
+  margin: 0;
+  padding-left: 20px;
+  color: #4a5568;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.tipsList li {
+  margin-bottom: 10px;
+}
+
+.tipsList li:last-child {
+  margin-bottom: 0;
+}
+
+.previousScore {
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.previousScore h3 {
+  margin: 0 0 12px 0;
+  color: #2d3748;
+  font-size: 18px;
+}
+
+.scoreDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.scoreLarge {
+  font-size: 48px;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.scoreDetails {
+  color: #718096;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.startButton,
+.retakeButton {
+  flex: 1;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-width: 200px;
+}
+
+.startButton:hover,
+.retakeButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.exitButton {
+  flex: 1;
+  padding: 16px 32px;
+  background: white;
+  color: #4a5568;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 200px;
+}
+
+.exitButton:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+/* ==================== RESULTS SCREEN ==================== */
+
+.resultsScreen {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.resultsCard {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.passedIcon,
+.failedIcon {
+  font-size: 72px;
+  margin-bottom: 20px;
+}
+
+.resultsTitle {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 12px 0;
+}
+
+.resultsSubtitle {
+  font-size: 20px;
+  color: #4a5568;
+  margin-bottom: 32px;
+}
+
+.resultsStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.statCard {
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statValue {
+  font-size: 32px;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: #718096;
+  font-weight: 500;
+}
+
+.resultsInfo {
+  background: #edf2f7;
+  border-left: 4px solid #48bb78;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.resultsInfo p {
+  margin: 0;
+  color: #4a5568;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ==================== DEMO WRAPPER ==================== */
+
+.demoWrapper {
+  min-height: 100vh;
+  background: #f7fafc;
+}
+
+.demoBanner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.comingSoon {
+  max-width: 800px;
+  margin: 60px auto;
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.comingSoon h2 {
+  color: #2d3748;
+  margin: 0 0 16px 0;
+}
+
+.comingSoon p {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .startCard,
+  .resultsCard {
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .resultsTitle {
+    font-size: 28px;
+  }
+
+  .resultsSubtitle {
+    font-size: 18px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .resultsStats {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .startButton,
+  .retakeButton,
+  .exitButton {
+    width: 100%;
+  }
+
+  .scoreLarge {
+    font-size: 36px;
+  }
+
+  .passedIcon,
+  .failedIcon {
+    font-size: 56px;
+  }
+}

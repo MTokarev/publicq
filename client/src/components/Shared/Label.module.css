@@ -1,0 +1,69 @@
+/* Label Component Styles */
+
+.label {
+  display: block;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  margin-bottom: var(--spacing-xs);
+  line-height: var(--line-height-tight);
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+/* Size variants */
+.label--sm {
+  font-size: var(--font-size-xs);
+}
+
+.label--md {
+  font-size: var(--font-size-sm);
+}
+
+.label--lg {
+  font-size: var(--font-size-base);
+}
+
+/* Required indicator */
+.requiredIndicator {
+  color: var(--color-error);
+  font-weight: var(--font-weight-semibold);
+  margin-left: 2px;
+}
+
+/* Optional indicator */
+.optionalIndicator {
+  color: var(--color-gray-500);
+  font-weight: var(--font-weight-normal);
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+/* States */
+.label--required {
+  /* Required styling handled by requiredIndicator child element */
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Focus management for accessibility */
+.label:focus-within {
+  color: var(--color-primary);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .label {
+    color: var(--color-gray-200);
+  }
+  
+  .optionalIndicator {
+    color: var(--color-gray-400);
+  }
+  
+  .label:focus-within {
+    color: var(--color-primary-light);
+  }
+}

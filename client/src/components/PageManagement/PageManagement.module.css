@@ -1,0 +1,218 @@
+.container {
+  padding: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-900);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-md);
+  color: var(--color-gray-600);
+  margin: 0;
+}
+
+.errorBanner,
+.successBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.errorBanner {
+  background-color: #fee;
+  border: 1px solid #fcc;
+  color: #c33;
+}
+
+.successBanner {
+  background-color: #efe;
+  border: 1px solid #cfc;
+  color: #3c3;
+}
+
+.closeBanner {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: var(--spacing-md);
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity var(--transition-duration);
+}
+
+.closeBanner:hover {
+  opacity: 1;
+}
+
+.tabs {
+  display: flex;
+  gap: var(--spacing-xs);
+  border-bottom: 2px solid var(--color-gray-200);
+  margin-bottom: var(--spacing-lg);
+}
+
+.tab {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-600);
+  transition: all var(--transition-duration);
+  margin-bottom: -2px;
+}
+
+.tab:hover:not(:disabled) {
+  color: var(--color-gray-900);
+  background-color: var(--color-gray-50);
+}
+
+.tab:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.activeTab {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.content {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.formSection {
+  max-width: 800px;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin: var(--spacing-xl) 0 var(--spacing-md) 0;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.sectionTitle:first-child {
+  margin-top: 0;
+}
+
+.formGroup {
+  margin-bottom: var(--spacing-lg);
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  margin-bottom: var(--spacing-xs);
+}
+
+.required {
+  color: #e53e3e;
+  margin-left: 4px;
+}
+
+.socialIcon {
+  margin-right: var(--spacing-xs);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-md);
+  font-family: inherit;
+  transition: border-color var(--transition-duration);
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-gray-400);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-gray-200);
+}
+
+.saveButton,
+.cancelButton {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-duration);
+  border: none;
+}
+
+.saveButton {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.saveButton:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancelButton {
+  background-color: var(--color-gray-200);
+  color: var(--color-gray-700);
+}
+
+.cancelButton:hover:not(:disabled) {
+  background-color: var(--color-gray-300);
+}
+
+.cancelButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

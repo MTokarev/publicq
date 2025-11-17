@@ -1,0 +1,15 @@
+/* UserTable Legacy CSS - Deprecated
+ * This file is being gradually removed as styles are migrated to UserTable.module.css
+ * Only keeping critical responsive overrides that can't be handled in CSS modules
+ */
+
+/* Critical responsive overrides for legacy class names used in other components */
+@media (max-width: 768px) {
+  .user-table-container {
+    overflow-x: auto !important;
+  }
+  
+  .user-table-wrapper {
+    min-width: 600px !important;
+  }
+}

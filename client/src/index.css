@@ -1,0 +1,6 @@
+/* Import Design System Styles */
+@import './styles/tokens.css';      /* CSS custom properties (design tokens) */
+@import './styles/globals.css';     /* Global reset and base styles */
+@import './styles/utilities.css';   /* Utility classes */
+
+/* The previous styles are now handled by globals.css with design tokens */

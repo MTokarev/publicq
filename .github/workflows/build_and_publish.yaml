@@ -1,0 +1,31 @@
+name: Build and Publish Docker
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'client/**'
+      - 'src/**'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+      - '.github/workflows/build_and_publish.yaml'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: docker build -t ${{ vars.DOCKERHUB_USERNAME }}/publicq-app:latest .
+
+      - name: Publish Docker image
+        run: docker push ${{ vars.DOCKERHUB_USERNAME }}/publicq-app:latest

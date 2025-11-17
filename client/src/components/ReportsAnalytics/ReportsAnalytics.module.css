@@ -1,0 +1,105 @@
+/* ReportsAnalytics Component Styles */
+
+/* Main container */
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tab navigation system */
+.tabsContainer {
+  position: relative;
+  border-bottom: 1px solid var(--color-gray-200);
+  background-color: var(--color-white);
+  margin-bottom: var(--spacing-xl);
+}
+
+.tabsWrapper {
+  display: flex;
+  position: relative;
+}
+
+.tab {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  white-space: nowrap;
+  text-align: center;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab:hover {
+  background-color: var(--color-gray-50);
+}
+
+.activeTab {
+  color: var(--color-primary);
+  background-color: var(--color-blue-50);
+}
+
+.inactiveTab {
+  color: var(--color-gray-500);
+  background-color: transparent;
+}
+
+.inactiveTab:hover {
+  color: var(--color-gray-700);
+}
+
+/* Tab underline system */
+.tabsUnderline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--color-gray-100);
+}
+
+.activeTabIndicator {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background-color: var(--color-primary);
+  transition: transform 0.3s ease-in-out;
+  border-radius: 3px 3px 0 0;
+}
+
+/* Tab content */
+.tabContent {
+  flex: 1;
+  padding: 0;
+  min-height: 500px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .tab {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    min-height: 50px;
+  }
+  
+  .tabsContainer {
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .tab {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    min-height: 44px;
+  }
+}

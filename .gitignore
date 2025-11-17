@@ -1,0 +1,61 @@
+# Exclude files and directories from Git tracking
+static/
+
+# Build results
+bin/
+obj/
+*.dll
+*.exe
+*.app
+*.pdb
+
+# Visual Studio / VS Code
+.vscode/
+.vs/
+*.user
+*.suo
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Core
+wwwroot/dist/
+wwwroot/node_modules/
+*.db
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+*.*shm*
+*.*wal*
+
+# Node / React
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+
+# Logs
+logs/
+*.log
+
+# macOS
+.DS_Store
+
+# Others
+coverage/
+*.nupkg
+*.tgz
+
+# Rider
+.idea/
+*.sln.iml
+
+# Test Results
+TestResults/
+*.coverage
+*.coveragexml
