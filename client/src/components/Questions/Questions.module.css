@@ -436,28 +436,25 @@
 
 .goToContainer {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border: 1px solid var(--color-gray-300);
-  border-radius: var(--radius);
-  background-color: var(--color-gray-50);
-  justify-content: center;
-  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
 }
 
 .goToLabel {
   font-size: var(--text-sm);
-  color: var(--color-gray-600);
+  color: var(--color-gray-700);
   font-weight: 500;
+  text-align: left;
 }
 
 .goToInput {
-  width: 50px;
-  padding: 6px 8px;
-  border: 1px solid var(--color-gray-300);
-  border-radius: var(--radius-sm);
-  font-size: var(--text-sm);
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--color-gray-300);
+  border-radius: var(--radius);
+  font-size: var(--text-base);
   text-align: center;
   outline: none;
   transition: var(--transition);
@@ -465,23 +462,24 @@
 
 .goToInput:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px var(--color-primary-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-focus);
 }
 
 .goToButton {
-  padding: 6px 12px;
-  background-color: var(--color-success);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-gray-500);
   color: var(--color-white);
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   cursor: pointer;
-  font-size: 12px;
+  font-size: var(--text-sm);
   font-weight: 600;
+  min-width: 100px;
   transition: var(--transition);
 }
 
 .goToButton:hover {
-  background-color: var(--color-success-hover);
+  background-color: var(--color-gray-600);
 }
 
 .goToButtonDisabled {
@@ -684,6 +682,9 @@
 .modalHeader {
   padding: var(--spacing-sm) var(--spacing-sm) 0;
   border-bottom: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .modalTitle {
@@ -692,6 +693,32 @@
   color: var(--color-gray-900);
   margin: 0;
   text-align: center;
+}
+
+.modalCloseButton {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--color-gray-400);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  line-height: 1;
+}
+
+.modalCloseButton:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
+.goToQuestionModal {
+  max-width: 400px;
 }
 
 .modalBody {

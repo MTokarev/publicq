@@ -40,6 +40,12 @@ public class ExamTakerModuleVersionDto
     public int DurationInMinutes { get; set; }
 
     /// <summary>
+    /// Remaining time calculated by server as TimeSpan (e.g., "00:45:30").
+    /// Null if not started or no duration limit. "00:00:00" if expired.
+    /// </summary>
+    public TimeSpan? TimeRemaining { get; set; }
+
+    /// <summary>
     /// Time when the test module was created.
     /// </summary>
     public DateTime CreatedAtUtc { get; set; }

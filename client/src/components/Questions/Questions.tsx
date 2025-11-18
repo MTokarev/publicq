@@ -49,6 +49,7 @@ const Questions: React.FC<QuestionsProps> = ({
   const [goToInput, setGoToInput] = useState('');
   const [showShakeAnimation, setShowShakeAnimation] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
+  const [showGoToModal, setShowGoToModal] = useState(false);
   const [initialAnswers, setInitialAnswers] = useState<Record<string, string[]>>({});
   const [pendingAnswers, setPendingAnswers] = useState<Record<string, string[]>>({});
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -59,6 +60,8 @@ const Questions: React.FC<QuestionsProps> = ({
   const [showColon, setShowColon] = useState(true);
   const [freeTextAnswers, setFreeTextAnswers] = useState<Record<string, string>>({});
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [timerStartTime, setTimerStartTime] = useState<Date | null>(null);
+  const [initialTimeRemaining, setInitialTimeRemaining] = useState<number | null>(null);
 
   // Handle window resize for responsive grid
   useEffect(() => {
@@ -153,8 +156,36 @@ const Questions: React.FC<QuestionsProps> = ({
     };
   }, [currentQuestionIndex, moduleVersion, showTimeExpiredModal]);
 
+  // Handle ESC key to close Go to Q# modal
+  useEffect(() => {
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showGoToModal) {
+        setShowGoToModal(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
+  }, [showGoToModal]);
+
   // State to store demo start time (so it doesn't reset on re-renders)
   const [demoStartTime] = useState<string>(() => new Date().toISOString());
+
+  // Initialize timer from server's timeRemaining
+  useEffect(() => {
+    if (demoMode || !moduleVersion?.timeRemaining) return;
+    
+    // Parse server's timeRemaining (format: "HH:MM:SS")
+    const parts = moduleVersion.timeRemaining.split(':');
+    const hours = parseInt(parts[0] || '0', 10);
+    const minutes = parseInt(parts[1] || '0', 10);
+    const seconds = parseInt(parts[2] || '0', 10);
+    const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    
+    // Initialize timer with server time and current timestamp
+    setInitialTimeRemaining(totalSeconds);
+    setTimerStartTime(new Date());
+  }, [demoMode, moduleVersion?.timeRemaining]);
 
   // Timer logic - update every second when module is active and has a time limit
   useEffect(() => {
@@ -172,26 +203,30 @@ const Questions: React.FC<QuestionsProps> = ({
           demoStartTime,
           moduleVersion.durationInMinutes
         );
-      } else if (moduleProgress?.timeRemaining) {
-        // Use server-calculated time remaining (TimeSpan format: "HH:MM:SS")
-        const parts = moduleProgress.timeRemaining.split(':');
-        const hours = parseInt(parts[0] || '0');
-        const minutes = parseInt(parts[1] || '0');
-        const seconds = parseInt(parts[2] || '0');
-        const totalSeconds = hours * 3600 + minutes * 60 + seconds;
-        const totalMinutes = Math.ceil(totalSeconds / 60);
+      } else if (timerStartTime && initialTimeRemaining !== null) {
+        // Calculate remaining time based on initial server time and elapsed client time
+        // This prevents clock manipulation while providing smooth countdown
+        const now = new Date();
+        const elapsedSeconds = Math.floor((now.getTime() - timerStartTime.getTime()) / 1000);
+        const remainingSeconds = Math.max(0, initialTimeRemaining - elapsedSeconds);
+        
+        const hours = Math.floor(remainingSeconds / 3600);
+        const minutes = Math.floor((remainingSeconds % 3600) / 60);
+        const seconds = remainingSeconds % 60;
+        const expired = remainingSeconds <= 0;
+        const totalMinutes = expired ? 0 : Math.ceil(remainingSeconds / 60);
         const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
         
         timeInfo = {
-          hasTimeRemaining: totalSeconds > 0,
-          isExpired: totalSeconds === 0,
+          hasTimeRemaining: !expired,
+          isExpired: expired,
           totalMinutes,
           hours,
           minutes,
           formattedTime,
-          formattedDisplay: totalSeconds > 0 
-            ? (hours > 0 ? `${hours}h ${minutes}m remaining` : `${minutes}m remaining`)
-            : 'Time Expired'
+          formattedDisplay: expired 
+            ? 'Time Expired'
+            : (hours > 0 ? `${hours}h ${minutes}m remaining` : `${minutes}m remaining`)
         };
       } else {
         return;
@@ -215,7 +250,7 @@ const Questions: React.FC<QuestionsProps> = ({
     const interval = setInterval(updateTimer, 1000);
 
     return () => clearInterval(interval);
-  }, [demoMode, demoStartTime, moduleProgress?.timeRemaining, moduleVersion?.durationInMinutes, showTimeExpiredModal]);
+  }, [demoMode, demoStartTime, timerStartTime, initialTimeRemaining, showTimeExpiredModal]);
 
   const loadModuleData = async () => {
     if (!state || !state.assignment || !state.groupMember || !state.user) {
@@ -332,6 +367,7 @@ const Questions: React.FC<QuestionsProps> = ({
       setCurrentQuestionIndex(questionNumber - 1);
       setGoToInput('');
       setShowErrorPopup(false);
+      setShowGoToModal(false); // Close modal after navigation
     } else {
       triggerShakeAndError();
     }
@@ -1442,17 +1478,40 @@ const Questions: React.FC<QuestionsProps> = ({
       <div className={cn(cssStyles.navigation, "questions-navigation")}>
         <div className={cn(cssStyles.navigationControls, "questions-navigation-controls")}>
           <div className={cn(cssStyles.mainButtons, "questions-main-buttons")}>
+            {currentQuestionIndex > 0 ? (
+              <button
+                onClick={handlePreviousQuestion}
+                disabled={timeRemaining?.isExpired}
+                className={cn(
+                  timeRemaining?.isExpired 
+                    ? cssStyles.navigationButtonDisabled 
+                    : cssStyles.navigationButton,
+                  "questions-navigation-button"
+                )}
+              >
+                ← Previous
+              </button>
+            ) : (
+              <button 
+                className={cn(cssStyles.navigationButtonDisabled, "questions-navigation-button")}
+                disabled
+              >
+                ← Previous
+              </button>
+            )}
+            
             <button
-              onClick={handlePreviousQuestion}
-              disabled={currentQuestionIndex === 0 || timeRemaining?.isExpired}
+              onClick={() => setShowGoToModal(true)}
+              disabled={timeRemaining?.isExpired}
               className={cn(
-                currentQuestionIndex === 0 || timeRemaining?.isExpired 
+                timeRemaining?.isExpired 
                   ? cssStyles.navigationButtonDisabled 
-                  : cssStyles.navigationButton,
+                  : cssStyles.goToButton,
                 "questions-navigation-button"
               )}
+              title="Jump to question"
             >
-              ← Previous
+              Go to Q#
             </button>
             
             {currentQuestionIndex < moduleVersion.questions.length - 1 ? (
@@ -1483,53 +1542,69 @@ const Questions: React.FC<QuestionsProps> = ({
               </button>
             )}
           </div>
-          
-          <div 
-            className={cn(
-              cssStyles.goToContainer,
-              "go-to-container",
-              "questions-go-to-container",
-              showShakeAnimation && cssStyles.shakeAnimation
-            )}
-          >
-            <label className={cssStyles.goToLabel}>Go to:</label>
-            <input
-              type="text"
-              value={goToInput}
-              onChange={handleGoToInputChange}
-              onKeyPress={handleGoToKeyPress}
-              placeholder="Q#"
-              className={cn(cssStyles.goToInput, "questions-go-to-input")}
-            />
-            <button
-              onClick={handleGoToSubmit}
-              disabled={!goToInput || isNaN(parseInt(goToInput)) || parseInt(goToInput) < 1 || parseInt(goToInput) > moduleVersion.questions.length || timeRemaining?.isExpired}
-              className={cn(
-                !goToInput || isNaN(parseInt(goToInput)) || parseInt(goToInput) < 1 || parseInt(goToInput) > moduleVersion.questions.length || timeRemaining?.isExpired
-                  ? cssStyles.goToButtonDisabled
-                  : cssStyles.goToButton,
-                "questions-go-to-button"
-              )}
-              title="Go to question"
-            >
-              Go
-            </button>
-            {showErrorPopup && (
-              <div className={cssStyles.errorPopup}>
-                <div className={cssStyles.errorPopupContent}>
-                  <span className={cssStyles.errorIcon}>⚠️</span>
-                  <div>
-                    <div className={cssStyles.errorTitle}>Invalid Question Number</div>
-                    <div className={cssStyles.errorMessage}>
-                      Please enter a number between 1 and {moduleVersion.questions.length}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
         </div>
       </div>
+
+      {/* Go to Q# Modal */}
+      {showGoToModal && (
+        <div className={cssStyles.modalOverlay} onClick={() => setShowGoToModal(false)}>
+          <div className={cn(cssStyles.modal, cssStyles.goToQuestionModal, "questions-modal")} onClick={(e) => e.stopPropagation()}>
+            <div className={cssStyles.modalHeader}>
+              <h3 className={cssStyles.modalTitle}>Go to Question</h3>
+              <button
+                onClick={() => setShowGoToModal(false)}
+                className={cssStyles.modalCloseButton}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+            <div className={cssStyles.modalBody}>
+              <div className={cn(
+                cssStyles.goToContainer,
+                "go-to-container",
+                showShakeAnimation && cssStyles.shakeAnimation
+              )}>
+                <label className={cssStyles.goToLabel}>Enter question number (1-{moduleVersion.questions.length}):</label>
+                <input
+                  type="text"
+                  value={goToInput}
+                  onChange={handleGoToInputChange}
+                  onKeyPress={handleGoToKeyPress}
+                  placeholder={`1 - ${moduleVersion.questions.length}`}
+                  className={cn(cssStyles.goToInput, "questions-go-to-input")}
+                  autoFocus
+                />
+                {showErrorPopup && (
+                  <div className={cssStyles.errorMessage} style={{ color: '#d32f2f', marginTop: '8px', fontSize: '14px' }}>
+                    ⚠️ Please enter a number between 1 and {moduleVersion.questions.length}
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className={cssStyles.modalFooter}>
+              <button
+                onClick={() => setShowGoToModal(false)}
+                className={cssStyles.cancelButton}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleGoToSubmit}
+                disabled={!goToInput || isNaN(parseInt(goToInput)) || parseInt(goToInput) < 1 || parseInt(goToInput) > moduleVersion.questions.length}
+                className={cn(
+                  !goToInput || isNaN(parseInt(goToInput)) || parseInt(goToInput) < 1 || parseInt(goToInput) > moduleVersion.questions.length
+                    ? cssStyles.goToButtonDisabled
+                    : cssStyles.navigationButton,
+                  "questions-go-to-button"
+                )}
+              >
+                Go to Question
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Confirmation Modal */}
       {showConfirmationModal && (

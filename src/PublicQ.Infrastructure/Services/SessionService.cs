@@ -335,6 +335,9 @@ public class SessionService(
             }
         });
         
+        // Add server-calculated time remaining to prevent client-side clock manipulation
+        assessmentModuleVersionDto.TimeRemaining = userProgress.TimeRemaining;
+        
         return Response<ExamTakerModuleVersionDto, GenericOperationStatuses>.Success(
             assessmentModuleVersionDto, 
             GenericOperationStatuses.Completed);
