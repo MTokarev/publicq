@@ -14,6 +14,7 @@ import MyAssignments from './pages/MyAssignments';
 import AssignmentExecutionPage from './pages/AssignmentExecutionPage';
 import Questions from './components/Questions';
 import { UserPolicies } from './models/user-policy';
+import { UserRole } from './models/UserRole';
 import homeStyles from './pages/Home/Home.module.css';
 import { ROUTES } from './constants/contstants';
 import AiChatDemo from './pages/AiChat';
@@ -21,7 +22,8 @@ import DemoExam from './components/DemoExam/DemoExam';
 import ContactUs from './pages/ContactUs/ContactUs';
 
 function HomePage() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, userRoles } = useAuth();
+  const isExamTaker = userRoles.includes(UserRole.EXAM_TAKER);
 
   return (
     <div className={homeStyles.homePage}>
@@ -74,12 +76,14 @@ function HomePage() {
             >
               Try Demo
             </Link>
-            <Link
-              to={ROUTES.MODULE_CREATE}
-              className={homeStyles.primaryButton}
-            >
-              Create Assessment Module
-            </Link>
+            {!isExamTaker && (
+              <Link
+                to={ROUTES.MODULE_CREATE}
+                className={homeStyles.primaryButton}
+              >
+                Create Assessment Module
+              </Link>
+            )}
             {!isAuthenticated && (
               <Link
                 to={ROUTES.LOGIN}
