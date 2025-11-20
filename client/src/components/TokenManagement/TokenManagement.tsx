@@ -389,11 +389,7 @@ const TokenManagement: React.FC<TokenManagementProps> = ({ tokenConfig, setToken
           <button
             onClick={handleSaveTokenOptions}
             disabled={loading || !hasUnsavedChanges()}
-            className={cssStyles.saveButton}
-            style={{
-              opacity: loading || !hasUnsavedChanges() ? 0.6 : 1,
-              cursor: loading || !hasUnsavedChanges() ? 'not-allowed' : 'pointer'
-            }}
+            className={`${cssStyles.button} ${cssStyles.saveButton}`}
           >
             {loading ? 'Saving...' : 'Save Token Configuration'}
           </button>
@@ -402,7 +398,7 @@ const TokenManagement: React.FC<TokenManagementProps> = ({ tokenConfig, setToken
             <button
               onClick={handleReset}
               disabled={loading}
-              className={cssStyles.resetButton}
+              className={`${cssStyles.button} ${cssStyles.resetButton}`}
             >
               Reset
             </button>
