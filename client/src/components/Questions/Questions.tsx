@@ -933,31 +933,48 @@ const Questions: React.FC<QuestionsProps> = ({
             }
             
             .questions-header {
-              flex-direction: column !important;
-              gap: 12px !important;
+              flex-direction: row !important;
+              flex-wrap: wrap !important;
+              gap: 8px !important;
               margin-bottom: 16px !important;
+              align-items: center !important;
+            }
+            
+            .questions-header-info {
+              flex: 1 1 0 !important;
+              min-width: 0 !important;
+              overflow: hidden !important;
             }
             
             .questions-header-info h2 {
-              font-size: 20px !important;
+              font-size: 18px !important;
               margin: 0 0 4px 0 !important;
+              white-space: nowrap !important;
+              overflow: hidden !important;
+              text-overflow: ellipsis !important;
             }
             
             .questions-header-info p {
-              font-size: 14px !important;
+              font-size: 13px !important;
               margin: 0 !important;
+              white-space: nowrap !important;
+              overflow: hidden !important;
+              text-overflow: ellipsis !important;
             }
             
             .questions-back-button {
               padding: 8px 16px !important;
               font-size: 14px !important;
               width: fit-content !important;
+              order: -1 !important;
+              flex-basis: 100% !important;
             }
             
             .questions-time-remaining-box {
               position: static !important;
-              margin: 0 auto !important;
+              margin: 0 !important;
               width: fit-content !important;
+              flex-shrink: 0 !important;
             }
             
             .questions-progress-bar {
