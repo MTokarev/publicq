@@ -21,3 +21,5 @@
 - Allow user to set/change SSL certificate 
 
 - Make sure removal the module also removes all associated static files
+
+- Allow users modify mail templates

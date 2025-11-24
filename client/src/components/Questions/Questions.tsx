@@ -1299,20 +1299,13 @@ const Questions: React.FC<QuestionsProps> = ({
               title=""
               showFileName={false}
               customStyles={{
-                container: {
-                  width: currentQuestion.staticFileUrls.length > 1 ? 'auto' : '100%',
-                  maxWidth: '100%'
-                },
                 filesGrid: {
                   display: 'grid',
                   gridTemplateColumns: currentQuestion.staticFileUrls.length > 1 
-                    ? 'repeat(auto-fit, minmax(300px, 1fr))' 
+                    ? 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))' 
                     : '1fr',
                   gap: '8px',
-                  paddingTop: '8px'
-                },
-                fileCard: {
-                  width: '100%',
+                  paddingTop: '8px',
                   maxWidth: '100%'
                 }
               }}

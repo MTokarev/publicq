@@ -214,13 +214,17 @@
   font-weight: 500;
   white-space: pre-wrap;
   user-select: none;
+  max-width: 90ch;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 
 .questionAttachments {
   margin-top: var(--spacing-xs);
   margin-bottom: var(--spacing-md);
   width: 100%;
-  max-width: 100%;
+  max-width: 90ch;
   overflow: hidden;
 }
 
