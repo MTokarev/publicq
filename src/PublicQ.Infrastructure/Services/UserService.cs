@@ -38,6 +38,11 @@ public class UserService(
     /// Maximum attempts to generate a unique ID for exam taker.
     /// </summary>
     private const int IdGenerationMaxAttempts = 10;
+    
+    /// <summary>
+    /// Key name for exam taker with no assignments.
+    /// </summary>
+    private const string ExamTakerWithNoAssignmentsKeyName = "empty";
 
     /// <summary>
     /// <see cref="IUserService.LoginUserAsync"/>
@@ -1018,8 +1023,11 @@ public class UserService(
         }
         
         logger.LogDebug("Creating new exam takers.");
-        var createdUsers = new List<User>();
         var errorMessages = new List<string>();
+
+        var groupedUsersWithAssignments = new Dictionary<Guid, IList<User>>();
+        var usersWithNoAssignment = new List<User>();
+        
         foreach (var examTaker in examTakers)
         {
             var email = examTaker.Email is not null ? 
@@ -1027,32 +1035,46 @@ public class UserService(
                 null;
             
             var userResponse = await RegisterExamTakerAsync(
-                email, 
+                email,
                 examTaker.Id,
                 examTaker.DateOfBirth,
                 examTaker.Name, 
                 cancellationToken);
 
-            if (userResponse.IsFailed)
+            if (userResponse.IsSuccess)
+            {
+                if (examTaker.AssignmentId.HasValue && 
+                    groupedUsersWithAssignments.TryGetValue(examTaker.AssignmentId.Value, out var users))
+                {
+                    users.Add(userResponse.Data!);
+                }
+                else if (examTaker.AssignmentId.HasValue)
+                {
+                    groupedUsersWithAssignments[examTaker.AssignmentId.Value] = new List<User> { userResponse.Data! };
+                }
+                else
+                {
+                    usersWithNoAssignment.Add(userResponse.Data!);
+                }
+            }
+            // We need to keep processing other users even if one fails
+            // and report all errors at the end
+            else
             {
                 errorMessages.Add(userResponse.Message);
             }
-            else
-            {
-                createdUsers.Add(userResponse.Data!);
-            }
         }
-        
-        var groupedExamTakers = examTakers
-            .Where(e => e.AssignmentId != null)
-            .GroupBy(e => e.AssignmentId!.Value)
-            .ToDictionary(g => g.Key, g => g.Select(e => e.Id).ToHashSet());
 
-        foreach (var group in groupedExamTakers)
+        foreach (var group in groupedUsersWithAssignments)
         {
+            var userIds = group
+                .Value
+                .Select(u => u.Id)
+                .ToHashSet();
+            
             var assignExamTakersResult = await assignmentService.AddExamTakersAsync(
                 group.Key, 
-                group.Value, 
+                userIds, 
                 importedByUser, 
                 cancellationToken);
 
@@ -1062,6 +1084,12 @@ public class UserService(
             }
         }
 
+        // Combine all created users
+        var createdUsers = groupedUsersWithAssignments.Select(g => g.Value)
+            .SelectMany(u => u)
+            .Concat(usersWithNoAssignment)
+            .ToList();
+        
         if (errorMessages.Count > 0)
         {
             var errorMessagesString = string.Join("; ", errorMessages);

@@ -1011,3 +1011,215 @@
   font-style: italic;
   font-size: var(--font-size-sm);
 }
+
+/* Import Result Modal Styles */
+.importError {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.importErrorTitle {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-error);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.importErrorMessage {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: var(--line-height-relaxed);
+}
+
+.backendErrorsList {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: white;
+  border-radius: var(--radius-sm);
+  border: 1px solid #fee2e2;
+}
+
+.backendErrorsTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-800);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.backendErrorsItems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.backendErrorItem {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+  padding: var(--spacing-xs) 0;
+  line-height: var(--line-height-relaxed);
+}
+
+.backendErrorItem::before {
+  content: "• ";
+  color: var(--color-error);
+  font-weight: bold;
+  margin-right: var(--spacing-xs);
+}
+
+.csvFormatHelp {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: #f9fafb;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-gray-200);
+}
+
+.csvFormatTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-800);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.csvExample {
+  background-color: var(--color-gray-900);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  overflow-x: auto;
+}
+
+.csvExampleText {
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-xs);
+  color: #10b981;
+  margin: 0;
+  padding: 2px 0;
+  white-space: nowrap;
+}
+
+.csvRequirementsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.csvRequirementsList li {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+  padding: var(--spacing-xs) 0;
+  line-height: var(--line-height-relaxed);
+}
+
+.csvRequirementsList li::before {
+  content: "→ ";
+  color: var(--color-primary);
+  font-weight: bold;
+  margin-right: var(--spacing-xs);
+}
+
+.importSuccess {
+  background-color: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+}
+
+.importSuccessTitle {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: #166534;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.importStats {
+  margin-bottom: var(--spacing-md);
+}
+
+.importStat {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-700);
+  margin: var(--spacing-xs) 0;
+}
+
+.importMessage {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  font-style: italic;
+  margin: var(--spacing-xs) 0;
+}
+
+.importedUsers {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: white;
+  border-radius: var(--radius-sm);
+  border: 1px solid #d1fae5;
+}
+
+.importedUsersHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.importedUsersTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-800);
+  margin: 0;
+}
+
+.copyButton {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-gray-300);
+  background-color: white;
+  color: var(--color-gray-700);
+  cursor: pointer;
+  transition: all var(--transition-duration);
+}
+
+.copyButton:hover {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-gray-400);
+}
+
+.importedUsersList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.importedUser {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background-color: var(--color-gray-50);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+}
+
+.importedUserId {
+  font-family: 'Courier New', monospace;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  min-width: 80px;
+}
+
+.importedUserName {
+  color: var(--color-gray-800);
+  flex: 1;
+}
+
+.importedUserEmail {
+  color: var(--color-gray-600);
+  font-size: var(--font-size-xs);
+}
