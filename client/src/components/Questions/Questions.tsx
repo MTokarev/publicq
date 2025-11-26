@@ -1728,9 +1728,6 @@ const Questions: React.FC<QuestionsProps> = ({
           onClick={(e) => e.stopPropagation()} // Prevent closing on overlay click
         >
           <div className={cn(cssStyles.modal, "questions-modal")}>
-            <div className={cssStyles.modalHeader}>
-              <h3 className={cssStyles.modalTitle}>Time Expired</h3>
-            </div>
             <div className={cssStyles.modalBody}>
               <div className={cssStyles.timeExpiredIcon}><img src="/images/icons/time.svg" alt="Time expired" style={{width: '48px', height: '48px'}} /></div>
               <div className={cssStyles.modalContent}>
