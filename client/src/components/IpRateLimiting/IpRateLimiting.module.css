@@ -13,7 +13,7 @@
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-lg);
   color: var(--color-gray-900);
-  letter-spacing: -0.025em;
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .sectionTitle {

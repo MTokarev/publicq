@@ -1079,7 +1079,7 @@ const styles: Record<string, React.CSSProperties> = {
     maxWidth: '1400px',
   },
   title: {
-    fontSize: '28px',
+    fontSize: '1.5rem',
     fontWeight: 700,
     marginBottom: '30px',
     color: '#111827',

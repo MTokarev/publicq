@@ -8,11 +8,11 @@
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0 0 8px 0;
-  color: #111827;
-  letter-spacing: -0.025em;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-gray-900);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .subtitle {

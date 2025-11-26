@@ -1013,7 +1013,7 @@ const styles: Record<string, React.CSSProperties> = {
     marginBottom: '30px',
   },
   title: {
-    fontSize: '28px',
+    fontSize: '1.5rem',
     fontWeight: 700,
     margin: '0',
     color: '#111827',

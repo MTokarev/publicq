@@ -62,7 +62,7 @@ const UserRegistrationManagement: React.FC<UserRegistrationManagementProps> = ({
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     } as React.CSSProperties,
     title: {
-      fontSize: '28px',
+      fontSize: '1.5rem',
       fontWeight: 700,
       marginBottom: '30px',
       color: '#111827',
