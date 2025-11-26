@@ -1245,7 +1245,6 @@ const Questions: React.FC<QuestionsProps> = ({
             onClick={() => setIsTimeBoxHidden(!isTimeBoxHidden)}
             title={isTimeBoxHidden ? "Click to show remaining time" : "Click to hide remaining time"}
           >
-            <div className={cssStyles.timeRemainingIcon}>⏱</div>
             <div className={cssStyles.timeRemainingContent}>
               <div className={cssStyles.timeRemainingText}>
                 {isTimeBoxHidden 
