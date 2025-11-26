@@ -103,7 +103,7 @@
 .primaryButton {
   display: inline-block;
   padding: var(--spacing-md) var(--spacing-xl);
-  background-color: var(--color-primary);
+  background-color: rgba(59, 130, 246, 0.85);
   color: var(--color-white);
   text-decoration: none;
   border-radius: var(--radius);
@@ -111,11 +111,11 @@
   font-weight: var(--font-weight-semibold);
   transition: var(--transition);
   box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
-  border: var(--border-width) solid var(--color-primary);
+  border: var(--border-width) solid rgba(59, 130, 246, 0.85);
 }
 
 .primaryButton:hover {
-  background-color: var(--color-blue-700);
+  background-color: rgba(59, 130, 246, 0.95);
   color: var(--color-white);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.4);
@@ -136,7 +136,7 @@
 }
 
 .secondaryButton:hover {
-  background-color: var(--color-primary);
+  background-color: rgba(59, 130, 246, 0.95);
   color: var(--color-white);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.4);

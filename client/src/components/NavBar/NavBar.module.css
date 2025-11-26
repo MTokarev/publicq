@@ -22,16 +22,17 @@
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   margin: 0;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-blue-400) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
   letter-spacing: var(--letter-spacing-tight);
 }
 
 .logoLink {
   text-decoration: none;
   color: inherit;
+}
+
+.logoLink:hover {
+  text-decoration: none;
 }
 
 .navLinks {
@@ -62,7 +63,7 @@
 }
 
 .navLink:hover {
-  background-color: var(--color-gray-100);
+  background-color: rgba(59, 130, 246, 0.1);
   color: var(--color-gray-900);
   transform: none;
   box-shadow: none;
@@ -83,13 +84,23 @@
   text-decoration: none !important;
 }
 
+@media (max-width: 768px) {
+  .navLink--active,
+  .navLink--active:hover,
+  .navBtn--active,
+  .navBtn--active:hover {
+    background-color: var(--color-primary) !important;
+    color: white !important;
+  }
+}
+
 .navBtn {
   padding: 0.75rem 1.25rem;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   border-radius: var(--radius);
   border: none;
-  background-color: var(--color-primary);
+  background-color: rgba(59, 130, 246, 0.85);
   color: var(--color-white) !important;
   cursor: pointer;
   transition: var(--transition);
@@ -103,7 +114,7 @@
 }
 
 .navBtn:hover {
-  background-color: var(--color-blue-700);
+  background-color: rgba(59, 130, 246, 0.95);
   color: var(--color-white) !important;
   text-decoration: none !important;
 }
@@ -148,7 +159,7 @@
 .hamburgerLine {
   width: 25px;
   height: 3px;
-  background-color: var(--color-gray-200);
+  background-color: var(--color-primary);
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   transform-origin: center;
   border-radius: 2px;
@@ -190,11 +201,12 @@
     top: 100%;
     right: 0;
     left: auto;
-    background: linear-gradient(135deg, #303E4F 0%, #283341 100%);
+    background: linear-gradient(135deg, #f0f9ff 0%, #f5f8ff 50%, #fafbff 100%);
     flex-direction: column;
     width: 280px;
     padding: 0;
     margin: 0;
+    gap: 0;
     box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.2);
     border-top: none;
     transform: translateY(-100%) scale(0.95);
@@ -216,7 +228,7 @@
   .navLinks li {
     margin: 0;
     width: 100%;
-    border-bottom: var(--border-width) solid rgba(255, 255, 255, 0.1);
+    border-bottom: var(--border-width) solid rgba(0, 0, 0, 0.06);
     transform: translateX(100%);
     opacity: 0;
     animation: none;
@@ -267,6 +279,8 @@
     box-sizing: border-box;
     align-items: center;
     justify-content: flex-start;
+    color: var(--color-primary) !important;
+    font-weight: 600;
   }
   
   .navLink::before,
@@ -277,13 +291,14 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
     transition: left 0.5s ease;
   }
   
   .navLink:hover,
   .navBtn:hover {
-    background-color: rgba(59, 130, 246, 0.15);
+    background-color: var(--color-primary);
+    color: white !important;
     transform: none;
     border-left: none;
     padding-left: 1.25rem;
@@ -299,9 +314,14 @@
     transform: translateX(2px) scale(0.98);
   }
   
-  .navBtn {
-    color: var(--color-gray-200);
-    font-weight: var(--font-weight-medium);
+  .navBtn--active {
+    background-color: var(--color-primary) !important;
+    color: white !important;
+  }
+  
+  .navBtn--active:hover {
+    background-color: var(--color-blue-700) !important;
+    color: white !important;
   }
 }
 
