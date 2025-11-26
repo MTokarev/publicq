@@ -644,7 +644,7 @@ const Admin = () => {
           <button 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className={cssStyles.sectionSelectButton}
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', border: '1px solid #ccc', borderRadius: '4px', background: 'white', cursor: 'pointer', minWidth: '250px' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', border: '1px solid #ccc', borderRadius: '12px', background: 'white', cursor: 'pointer', minWidth: '250px' }}
           >
             {getSectionInfo(activeSection).icon}
             <span style={{ flex: 1, textAlign: 'left' }}>{getSectionInfo(activeSection).title}</span>
@@ -654,7 +654,7 @@ const Admin = () => {
           </button>
           
           {isDropdownOpen && (
-            <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: 'white', border: '1px solid #ccc', borderRadius: '4px', marginTop: '4px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', zIndex: 1000, maxHeight: '400px', overflowY: 'auto' }}>
+            <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: 'white', border: '1px solid #ccc', borderRadius: '12px', marginTop: '4px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', zIndex: 1000, maxHeight: '400px', overflowY: 'auto' }}>
               <button
                 onClick={() => { navigateToSection('dashboard'); setIsDropdownOpen(false); }}
                 style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'dashboard' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}

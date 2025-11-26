@@ -1229,3 +1229,9 @@
   color: var(--color-gray-600);
   font-size: var(--font-size-xs);
 }
+
+@media (max-width: 768px) {
+  .title {
+    display: none !important;
+  }
+}

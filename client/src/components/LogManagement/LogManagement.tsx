@@ -6,6 +6,7 @@ import { LogFilter, defaultLogFilter, LogLevels } from '../../models/log-filter'
 import { LogConfiguration, LogLevel, getLogLevels, defaultLogConfiguration } from '../../models/log-configuration';
 import { PaginatedResponse } from '../../models/paginatedResponse';
 import { formatDateToLocal, parseUtcDate } from '../../utils/dateUtils';
+import cssStyles from './LogManagement.module.css';
 
 interface LogManagementProps {
   logConfig: LogConfiguration & { dataLoaded: boolean };
@@ -443,7 +444,7 @@ const LogManagement: React.FC<LogManagementProps> = ({ logConfig, setLogConfig }
 
   return (
     <div style={styles.container}>
-      <h2 style={{...styles.title, display: 'flex', alignItems: 'center'}}><img src="/images/icons/clipboard.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Log Management</h2>
+      <h2 className={cssStyles.title} style={{...styles.title, display: 'flex', alignItems: 'center'}}><img src="/images/icons/clipboard.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Log Management</h2>
       
       {/* Tab Navigation */}
       <div style={styles.tabNavigation}>

@@ -260,6 +260,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .demoHeader h1 {
+    display: none !important;
+  }
+}
+
 @media (max-width: 640px) {
   .demoPage {
     padding: 1rem;

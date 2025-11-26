@@ -6,6 +6,7 @@ import { formatDateToLocal } from '../../utils/dateUtils';
 import GroupModuleManagement from './GroupModuleManagement';
 import { VALIDATION_CONSTRAINTS } from '../../constants/contstants';
 import { ValidationMessage } from '../Shared/ValidationComponents';
+import cssStyles from './GroupManagement.module.css';
 
 interface DeleteConfirmationModalProps {
   isOpen: boolean;
@@ -735,7 +736,7 @@ const GroupManagement = ({ groupManagementData, setGroupManagementData }: GroupM
       )}
       <div style={styles.container}>
         <div style={styles.header} className="group-management-header">
-          <h2 style={{...styles.title, display: 'flex', alignItems: 'center'}}><img src="/images/icons/group.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Group Management</h2>
+          <h2 className={cssStyles.title} style={{...styles.title, display: 'flex', alignItems: 'center'}}><img src="/images/icons/group.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Group Management</h2>
           <button 
             onClick={handleCreateGroup}
             style={styles.createButton}

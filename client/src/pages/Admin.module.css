@@ -368,11 +368,12 @@
   }
   
   .sectionInfo {
-    display: none;
+    display: none !important;
   }
   
   .sectionDropdown {
     display: flex !important;
+    width: 100%;
   }
   
   .content {
@@ -397,8 +398,7 @@
   }
   
   .dashboardTitle {
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--spacing-lg);
+    display: none !important;
   }
 
   .shortcutsSection {

@@ -452,4 +452,8 @@
   .modalActions {
     flex-direction: column;
   }
+  
+  .title {
+    display: none !important;
+  }
 }

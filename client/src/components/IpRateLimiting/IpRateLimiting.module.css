@@ -378,4 +378,8 @@
     padding: var(--spacing-lg);
     border-radius: var(--border-radius-lg);
   }
+  
+  .title {
+    display: none !important;
+  }
 }

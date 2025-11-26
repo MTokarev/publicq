@@ -328,6 +328,12 @@
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .title {
+    display: none !important;
+  }
+}
+
 @media (max-width: 640px) {
   .formRow {
     flex-direction: column;
@@ -517,5 +523,9 @@
   .copyButton {
     width: 100%;
     justify-content: center;
+  }
+  
+  .title {
+    display: none !important;
   }
 }

@@ -288,3 +288,9 @@
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
+
+@media (max-width: 768px) {
+  .title {
+    display: none !important;
+  }
+}

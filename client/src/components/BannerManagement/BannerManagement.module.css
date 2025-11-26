@@ -477,6 +477,10 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .title {
+    display: none;
+  }
+
   .bannersGrid {
     grid-template-columns: 1fr;
   }
@@ -495,5 +499,9 @@
     max-width: 100%;
     max-height: 100vh;
     border-radius: 0;
+  }
+  
+  .title {
+    display: none !important;
   }
 }

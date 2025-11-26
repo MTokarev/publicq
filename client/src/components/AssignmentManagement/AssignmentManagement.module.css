@@ -865,11 +865,15 @@
     flex: 1 1 auto;
     min-width: 100px;
   }
+  
+  .title {
+    display: none !important;
+  }
 }
 
 @media (max-width: 480px) {
   .title {
-    font-size: var(--font-size-xl);
+    display: none !important;
   }
 
   .search {
@@ -935,5 +939,9 @@
   .keyboardShortcuts {
     font-size: 10px;
     margin-top: var(--spacing-xs);
+  }
+  
+  .title {
+    display: none !important;
   }
 }
