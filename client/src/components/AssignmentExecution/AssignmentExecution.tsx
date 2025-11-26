@@ -318,21 +318,22 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         }
         .assignment-execution-header {
           flex-direction: column !important;
-          gap: 12px !important;
-          text-align: center !important;
-          padding: 16px !important;
+          gap: 8px !important;
+          align-items: stretch !important;
+          padding: 12px !important;
         }
         .assignment-execution-header .assignment-execution-back-button {
           align-self: flex-start !important;
           width: auto !important;
-          margin-bottom: 8px !important;
+          order: -1 !important;
         }
         .assignment-execution-header .headerContent {
-          order: 1 !important;
-          margin: 8px 0 !important;
+          order: 0 !important;
+          margin: 0 !important;
+          text-align: center !important;
         }
         .assignment-execution-header .userInfo {
-          order: 2 !important;
+          order: 1 !important;
           align-self: center !important;
           align-items: center !important;
           text-align: center !important;
@@ -982,10 +983,10 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
           style={styles.backButtonSmall}
           className="assignment-execution-back-button"
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#f3f4f6';
+            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.95)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#ffffff';
+            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.85)';
           }}
         >
           ← Back
