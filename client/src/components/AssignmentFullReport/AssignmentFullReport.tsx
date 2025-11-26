@@ -177,7 +177,7 @@ const AssignmentFullReport: React.FC<AssignmentFullReportProps> = ({
 
       // Reset button
       if (exportButton) {
-        exportButton.textContent = '📄 Export PDF';
+        exportButton.innerHTML = '<img src="/images/icons/save.svg" alt="" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;" />Export PDF';
         exportButton.disabled = false;
       }
 
@@ -186,7 +186,7 @@ const AssignmentFullReport: React.FC<AssignmentFullReportProps> = ({
       
       const exportButton = document.querySelector('[data-export-button]') as HTMLButtonElement;
       if (exportButton) {
-        exportButton.textContent = '📄 Export PDF';
+        exportButton.innerHTML = '<img src="/images/icons/save.svg" alt="" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;" />Export PDF';
         exportButton.disabled = false;
       }
     }
@@ -489,7 +489,7 @@ const AssignmentFullReport: React.FC<AssignmentFullReportProps> = ({
             className="assignment-full-report-button"
             data-export-button
           >
-            📄 Export PDF
+            <img src="/images/icons/save.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Export PDF
           </button>
           <button 
             onClick={() => fetchAssignmentReport()}
@@ -850,7 +850,7 @@ const AssignmentFullReport: React.FC<AssignmentFullReportProps> = ({
                       <h5 style={styles.detailsTitle}>Individual Performance Analytics</h5>
                       <div style={styles.notStartedContent}>
                         <p style={styles.notStartedText}>
-                          📊 Individual Performance Analytics will be available once the student launches this assignment.
+                          <img src="/images/icons/chart.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Individual Performance Analytics will be available once the student launches this assignment.
                         </p>
                         <p style={styles.notStartedSubtext}>
                           Performance metrics, charts, and detailed progress reports will appear here after the student begins their first module.

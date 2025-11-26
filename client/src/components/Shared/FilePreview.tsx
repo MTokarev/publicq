@@ -186,7 +186,7 @@ export const FilePreview = ({
 
       {files.length === 0 && (
         <div className={fileStyles.emptyState}>
-          <span className={fileStyles.emptyIcon}>📎</span>
+          <span className={fileStyles.emptyIcon}><img src="/images/icons/attachment.svg" alt="" style={{width: '32px', height: '32px'}} /></span>
           <p className={fileStyles.emptyText}>No attachments</p>
         </div>
       )}
@@ -356,7 +356,7 @@ const FilePreviewCard = ({ fileMeta, onRemove, onImageClick, showFileName = true
       default:
         return (
           <div className={fileStyles.fileTypePreview}>
-            <div className={fileStyles.fileTypeIcon}>📁</div>
+            <div className={fileStyles.fileTypeIcon}><img src="/images/icons/folder.svg" alt="" style={{width: '48px', height: '48px'}} /></div>
             <span className={fileStyles.fileTypeName}>FILE</span>
           </div>
         );

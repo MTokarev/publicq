@@ -735,7 +735,7 @@ const GroupManagement = ({ groupManagementData, setGroupManagementData }: GroupM
       )}
       <div style={styles.container}>
         <div style={styles.header} className="group-management-header">
-          <h2 style={styles.title}>Group Management</h2>
+          <h2 style={{...styles.title, display: 'flex', alignItems: 'center'}}><img src="/images/icons/group.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Group Management</h2>
           <button 
             onClick={handleCreateGroup}
             style={styles.createButton}
@@ -758,7 +758,7 @@ const GroupManagement = ({ groupManagementData, setGroupManagementData }: GroupM
 
         <div style={styles.infoSection}>
           <div style={styles.infoHeader}>
-            <span style={styles.infoIcon}>ℹ️</span>
+            <span style={styles.infoIcon}><img src="/images/icons/information.svg" alt="" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} /></span>
             <span style={styles.infoTitle}>Group Settings Information</span>
           </div>
           <div style={styles.infoContent}>

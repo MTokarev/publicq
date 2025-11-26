@@ -122,7 +122,7 @@ export const ModuleInfoHeader: React.FC<ModuleInfoHeaderProps> = ({
         
         {!canPublish && (
           <div style={styles.infoBanner}>
-            <span style={styles.infoIcon}>ℹ️</span>
+            <span style={styles.infoIcon}><img src="/images/icons/information.svg" alt="" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} /></span>
             <div style={styles.infoContent}>
               <div style={styles.infoTitle}>Module Permissions</div>
               <div style={styles.infoText}>

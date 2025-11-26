@@ -194,7 +194,7 @@ export const InfoBox: React.FC<InfoBoxProps> = ({
   className
 }) => {
   const defaultIcons = {
-    info: 'ℹ️',
+    info: <img src="/images/icons/information.svg" alt="Info" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} />,
     success: '✅',
     warning: '⚠️',
     error: '❌'

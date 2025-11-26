@@ -176,7 +176,7 @@ const EmailManagement: React.FC<EmailManagementProps> = ({ emailConfig: emailOpt
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Email Configuration</h2>
+      <h2 className={styles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/email.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Email Configuration</h2>
       
       {error && (
         <div className={styles.error}>

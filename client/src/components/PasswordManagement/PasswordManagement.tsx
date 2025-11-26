@@ -93,7 +93,7 @@ const PasswordManagement: React.FC<PasswordManagementProps> = ({ passwordConfig,
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Password Policy Settings</h2>
+      <h2 className={styles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/lock.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Password Policy Settings</h2>
 
       {error && (
         <div className={styles.errorMessage}>

@@ -349,17 +349,17 @@ const LogManagement: React.FC<LogManagementProps> = ({ logConfig, setLogConfig }
   const getLevelIcon = (level: string) => {
     switch (level) {
       case 'Critical':
-        return '🔴';
+        return <img src="/images/icons/fail.svg" alt="Critical" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} />;
       case 'Error':
-        return '❌';
+        return <img src="/images/icons/fail.svg" alt="Error" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} />;
       case 'Warning':
-        return '⚠️';
+        return <img src="/images/icons/warning.svg" alt="Warning" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} />;
       case 'Information':
-        return 'ℹ️';
+        return <img src="/images/icons/information.svg" alt="Info" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} />;
       case 'Debug':
-        return '🐛';
+        return <img src="/images/icons/magnifying-glass.svg" alt="Debug" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} />;
       default:
-        return '📝';
+        return <img src="/images/icons/notepad.svg" alt="Log" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} />;
     }
   };
 
@@ -443,7 +443,7 @@ const LogManagement: React.FC<LogManagementProps> = ({ logConfig, setLogConfig }
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.title}>Log Management</h2>
+      <h2 style={{...styles.title, display: 'flex', alignItems: 'center'}}><img src="/images/icons/clipboard.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Log Management</h2>
       
       {/* Tab Navigation */}
       <div style={styles.tabNavigation}>
@@ -454,7 +454,7 @@ const LogManagement: React.FC<LogManagementProps> = ({ logConfig, setLogConfig }
             ...(activeTab === 'logs' ? styles.activeTabButton : {}),
           }}
         >
-          📋 View Logs
+          <img src="/images/icons/clipboard.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />View Logs
         </button>
         <button
           onClick={() => setActiveTab('configuration')}
@@ -463,7 +463,7 @@ const LogManagement: React.FC<LogManagementProps> = ({ logConfig, setLogConfig }
             ...(activeTab === 'configuration' ? styles.activeTabButton : {}),
           }}
         >
-          ⚙️ Configuration
+          <img src="/images/icons/settings.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Configuration
         </button>
       </div>
 
@@ -514,7 +514,7 @@ const LogManagement: React.FC<LogManagementProps> = ({ logConfig, setLogConfig }
                         {logConfig.logLevel}
                       </span>
                       {(logConfig.logLevel === LogLevel.Debug || logConfig.logLevel === LogLevel.Information) && (
-                        <span style={styles.performanceWarningText}> ⚠️ May impact performance. Consider setting to Warning or higher for production.</span>
+                        <span style={styles.performanceWarningText}> <img src="/images/icons/warning.svg" alt="" style={{width: '14px', height: '14px', marginRight: '4px', verticalAlign: 'middle'}} />May impact performance. Consider setting to Warning or higher for production.</span>
                       )}
                     </p>
                     <p style={styles.infoText}>
@@ -987,7 +987,7 @@ const LogManagement: React.FC<LogManagementProps> = ({ logConfig, setLogConfig }
               {/* Message Section */}
               <div style={styles.logDetailMainContent}>
                 <div style={styles.logDetailSectionHeader}>
-                  <h4 style={styles.logDetailSectionTitle}>📝 Message</h4>
+                  <h4 style={styles.logDetailSectionTitle}><img src="/images/icons/notepad.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Message</h4>
                 </div>
                 <div style={styles.logDetailMessageBox}>
                   <pre style={styles.logDetailMessageText}>{selectedLog.message}</pre>
@@ -998,7 +998,7 @@ const LogManagement: React.FC<LogManagementProps> = ({ logConfig, setLogConfig }
               {selectedLog.exception && (
                 <div style={styles.logDetailMainContent}>
                   <div style={styles.logDetailSectionHeader}>
-                    <h4 style={styles.logDetailSectionTitle}>🚨 Exception Details</h4>
+                    <h4 style={styles.logDetailSectionTitle}><img src="/images/icons/warning.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Exception Details</h4>
                   </div>
                   <div style={styles.logDetailExceptionBox}>
                     <pre style={styles.logDetailExceptionText}>{selectedLog.exception}</pre>
@@ -1029,7 +1029,7 @@ const LogManagement: React.FC<LogManagementProps> = ({ logConfig, setLogConfig }
         <div style={styles.modalOverlay}>
           <div style={styles.modal}>
             <div style={styles.modalHeader}>
-              <h3 style={styles.modalTitle}>⚠️ Performance Warning</h3>
+              <h3 style={styles.modalTitle}><img src="/images/icons/warning.svg" alt="" style={{width: '20px', height: '20px', marginRight: '8px', verticalAlign: 'middle'}} />Performance Warning</h3>
             </div>
             <div style={styles.modalBody}>
               <p style={styles.modalText}>
@@ -1472,6 +1472,7 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '14px',
     fontWeight: 500,
     borderBottom: '2px solid transparent',
+    borderBottomColor: 'transparent',
     transition: 'all 0.2s ease-in-out',
   },
   activeTabButton: {
@@ -1541,6 +1542,8 @@ const styles: Record<string, React.CSSProperties> = {
     borderBottom: '1px solid #e5e7eb',
   },
   modalTitle: {
+    display: 'flex',
+    alignItems: 'center',
     fontSize: '18px',
     fontWeight: 600,
     color: '#dc2626',

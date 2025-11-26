@@ -105,7 +105,7 @@ const FilePicker: React.FC<FileUploadProps> = ({
         onDrop={handleDrop}
       >
         <div className={styles.dropZoneContent}>
-          <span className={styles.dropZoneIcon}>📁</span>
+          <span className={styles.dropZoneIcon}><img src="/images/icons/folder.svg" alt="" style={{width: '48px', height: '48px'}} /></span>
           <p className={styles.dropZoneText}>
             Drag and drop files here, or{' '}
             <label htmlFor="file-upload" className={styles.browseLink}>

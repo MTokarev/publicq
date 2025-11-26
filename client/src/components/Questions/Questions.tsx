@@ -1587,7 +1587,7 @@ const Questions: React.FC<QuestionsProps> = ({
                 />
                 {showErrorPopup && (
                   <div className={cssStyles.errorMessage} style={{ color: '#d32f2f', marginTop: '8px', fontSize: '14px' }}>
-                    ⚠️ Please enter a number between 1 and {moduleVersion.questions.length}
+                    <img src="/images/icons/warning.svg" alt="Warning" style={{width: '16px', height: '16px', marginRight: '4px', verticalAlign: 'middle'}} /> Please enter a number between 1 and {moduleVersion.questions.length}
                   </div>
                 )}
               </div>
@@ -1630,7 +1630,12 @@ const Questions: React.FC<QuestionsProps> = ({
                 
                 return (
                   <>
-                    <div className={cssStyles.warningIcon}>{hasUnanswered ? '⚠️' : '✓'}</div>
+                    <div className={cssStyles.warningIcon}>
+                      {hasUnanswered ? 
+                        <img src="/images/icons/warning.svg" alt="Warning" style={{width: '32px', height: '32px'}} /> : 
+                        <img src="/images/icons/check.svg" alt="Check" style={{width: '32px', height: '32px'}} />
+                      }
+                    </div>
                     <div className={cssStyles.modalContent}>
                       {hasUnanswered ? (
                         <>

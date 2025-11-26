@@ -39,17 +39,17 @@ function HomePage() {
 
           <div className={homeStyles.features}>
             <div className={homeStyles.feature}>
-              <div className={homeStyles.featureIcon}>📝</div>
+              <div className={homeStyles.featureIcon}><img src="/images/icons/notepad.svg" alt="Create" style={{width: '48px', height: '48px'}} /></div>
               <h3 className={homeStyles.featureTitle}>Create Assessments</h3>
               <p className={homeStyles.featureDesc}>Design custom assessment modules with multiple question types</p>
             </div>
             <div className={homeStyles.feature}>
-              <div className={homeStyles.featureIcon}>📊</div>
+              <div className={homeStyles.featureIcon}><img src="/images/icons/chart.svg" alt="Track" style={{width: '48px', height: '48px'}} /></div>
               <h3 className={homeStyles.featureTitle}>Track Progress</h3>
               <p className={homeStyles.featureDesc}>Monitor performance and analyze results in real-time</p>
             </div>
             <div className={homeStyles.feature}>
-              <div className={homeStyles.featureIcon}>🚀</div>
+              <div className={homeStyles.featureIcon}><img src="/images/icons/rocket.svg" alt="Deploy" style={{width: '48px', height: '48px'}} /></div>
               <h3 className={homeStyles.featureTitle}>Deploy Instantly</h3>
               <p className={homeStyles.featureDesc}>Publish your assessments and share them with your audience</p>
             </div>

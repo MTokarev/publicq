@@ -181,7 +181,7 @@ const CacheManagement: React.FC<CacheManagementProps> = ({ cacheConfig, setCache
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Cache Configuration</h2>
+      <h2 className={styles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/sparkles.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Cache Configuration</h2>
       
       {/* Information Section */}
       <div className={styles.infoSection}>

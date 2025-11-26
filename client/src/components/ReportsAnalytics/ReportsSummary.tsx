@@ -458,7 +458,7 @@ const ReportsSummary: React.FC<ReportsSummaryProps> = () => {
               className={cn(cssStyles.exportButton, "reports-summary-details-header-button")}
               data-export-button
             >
-              📄 Export PDF
+              <img src="/images/icons/save.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Export PDF
             </button>
           </div>
           <h3 className={cssStyles.detailsTitle}>{selectedAssignment.assignmentTitle}</h3>
@@ -683,14 +683,14 @@ const ReportsSummary: React.FC<ReportsSummaryProps> = () => {
     return (
       <div className={cssStyles.container} id="reports-content">
         <div className={cssStyles.header}>
-          <h2 className={cssStyles.title}>Reports & Analytics</h2>
+          <h2 className={cssStyles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/line-chart.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Reports & Analytics</h2>
           <div className={cn(cssStyles.headerButtons, "reports-summary-header-buttons")}>
             <button 
               onClick={handleExportPDF}
               className={cn(cssStyles.exportButton, "reports-summary-header-button")}
               data-export-button
             >
-              📄 Export PDF
+              <img src="/images/icons/save.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Export PDF
             </button>
             <button 
               onClick={() => fetchAssignments(currentPage)}

@@ -458,7 +458,7 @@ const ModuleManagement = ({ moduleManagementData, setModuleManagementData, onNav
       />
       <div style={styles.container}>
         <div style={styles.header} className="module-management-header">
-          <h2 style={styles.title}>Module Management</h2>
+          <h2 style={{...styles.title, display: 'flex', alignItems: 'center'}}><img src="/images/icons/books.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Module Management</h2>
           <div style={styles.headerActions}>
             <div style={styles.headerInfo}>
               <span style={styles.moduleCount}>
@@ -488,7 +488,7 @@ const ModuleManagement = ({ moduleManagementData, setModuleManagementData, onNav
 
         <div style={styles.infoSection}>
           <div style={styles.infoHeader}>
-            <span style={styles.infoIcon}>ℹ️</span>
+            <span style={styles.infoIcon}><img src="/images/icons/information.svg" alt="" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} /></span>
             <span style={styles.infoTitle}>Module Data Information</span>
           </div>
           <div style={styles.infoContent}>

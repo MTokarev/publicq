@@ -200,7 +200,7 @@ const IpRateLimiting: React.FC<IpRateLimitingProps> = ({ onStatusChange }) => {
   if (loading && !rateLimitOptions) {
     return (
       <div className={styles.container}>
-        <h2 className={styles.title}>IP Rate Limiting</h2>
+        <h2 className={styles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/shield.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />IP Rate Limiting</h2>
         <div>Loading configuration...</div>
       </div>
     );
@@ -208,7 +208,7 @@ const IpRateLimiting: React.FC<IpRateLimitingProps> = ({ onStatusChange }) => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>IP Rate Limiting</h2>
+      <h2 className={styles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/shield.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />IP Rate Limiting</h2>
       
       {success && (
         <div className={styles.successMessage}>

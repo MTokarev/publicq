@@ -1022,6 +1022,8 @@
 }
 
 .importErrorTitle {
+  display: flex;
+  align-items: center;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
   color: var(--color-error);
@@ -1044,6 +1046,8 @@
 }
 
 .backendErrorsTitle {
+  display: flex;
+  align-items: center;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   color: var(--color-gray-800);
@@ -1079,6 +1083,8 @@
 }
 
 .csvFormatTitle {
+  display: flex;
+  align-items: center;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   color: var(--color-gray-800);

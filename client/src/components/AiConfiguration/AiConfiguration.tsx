@@ -305,7 +305,7 @@ const AiConfiguration: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>AI Configuration</h2>
+      <h2 className={styles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/robot.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />AI Configuration</h2>
       
       {error && (
         <div className={styles.error}>

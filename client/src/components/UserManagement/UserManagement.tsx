@@ -883,12 +883,12 @@ const ImportResultModal = ({ isOpen, result, error, onClose, onCopyImportedUsers
         {/* Backend validation errors */}
         {isBackendError && (
           <div className={userManagementStyles.importError}>
-            <p className={userManagementStyles.importErrorTitle}>❌ Import failed due to validation errors:</p>
+            <p className={userManagementStyles.importErrorTitle}><img src="/images/icons/fail.svg" alt="Error" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} /> Import failed due to validation errors:</p>
             <p className={userManagementStyles.importErrorMessage}>{result.message}</p>
             
             {hasBackendErrors && (
               <div className={userManagementStyles.backendErrorsList}>
-                <p className={userManagementStyles.backendErrorsTitle}>🔍 Details:</p>
+                <p className={userManagementStyles.backendErrorsTitle}><img src="/images/icons/magnifying-glass.svg" alt="Details" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle'}} /> Details:</p>
                 <ul className={userManagementStyles.backendErrorsItems}>
                   {result.errors.map((errorMsg: string, index: number) => (
                     <li key={index} className={userManagementStyles.backendErrorItem}>
@@ -900,7 +900,7 @@ const ImportResultModal = ({ isOpen, result, error, onClose, onCopyImportedUsers
             )}
             
             <div className={userManagementStyles.csvFormatHelp}>
-              <p className={userManagementStyles.csvFormatTitle}>💡 Tips:</p>
+              <p className={userManagementStyles.csvFormatTitle}><img src="/images/icons/light-bulb.svg" alt="Tips" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle'}} /> Tips:</p>
               <ul className={userManagementStyles.csvRequirementsList}>
                 <li>Check for duplicate IDs in your CSV file</li>
                 <li>Check for duplicate email addresses in your CSV file</li>
@@ -914,10 +914,10 @@ const ImportResultModal = ({ isOpen, result, error, onClose, onCopyImportedUsers
         {/* Generic/parsing errors */}
         {hasError && !isBackendError && (
           <div className={userManagementStyles.importError}>
-            <p className={userManagementStyles.importErrorTitle}>❌ Error occurred during import:</p>
+            <p className={userManagementStyles.importErrorTitle}><img src="/images/icons/fail.svg" alt="Error" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} /> Error occurred during import:</p>
             <p className={userManagementStyles.importErrorMessage}>{error}</p>
             <div className={userManagementStyles.csvFormatHelp}>
-              <p className={userManagementStyles.csvFormatTitle}>📄 Expected CSV Format:</p>
+              <p className={userManagementStyles.csvFormatTitle}><img src="/images/icons/clipboard.svg" alt="Format" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle'}} /> Expected CSV Format:</p>
               <div className={userManagementStyles.csvExample}>
                 <p className={userManagementStyles.csvExampleText}>id,name,email,date_of_birth,assignment_id</p>
                 <p className={userManagementStyles.csvExampleText}>,"John Doe","john@example.com","1990-01-15","123e4567-e89b-12d3-a456-426614174000"</p>
@@ -940,7 +940,7 @@ const ImportResultModal = ({ isOpen, result, error, onClose, onCopyImportedUsers
         {hasResult && !isBackendError && (
           <div className={userManagementStyles.importSuccess}>
             <p className={userManagementStyles.importSuccessTitle}>
-              ✅ Import completed successfully!
+              <img src="/images/icons/check.svg" alt="Success" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} /> Import completed successfully!
             </p>
             <div className={userManagementStyles.importStats}>
               <p className={userManagementStyles.importStat}>
@@ -959,7 +959,7 @@ const ImportResultModal = ({ isOpen, result, error, onClose, onCopyImportedUsers
                     className={userManagementStyles.copyButton}
                     title="Copy all imported exam takers to clipboard"
                   >
-                    📋 Copy All
+                    <img src="/images/icons/clipboard.svg" alt="Copy" style={{width: '14px', height: '14px', marginRight: '4px', verticalAlign: 'middle'}} /> Copy All
                   </button>
                 </div>
                 <div className={userManagementStyles.importedUsersList}>
@@ -1659,12 +1659,12 @@ const UserManagement = ({ userManagementData, setUserManagementData, currentUser
       />
       <div className={userManagementStyles.container}>
         <div className={userManagementStyles.header}>
-          <h2 className={userManagementStyles.title}>User Management</h2>
+          <h2 className={userManagementStyles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/users.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />User Management</h2>
         </div>
 
         <div className={userManagementStyles.infoSection}>
           <div className={userManagementStyles.infoHeader}>
-            <span className={userManagementStyles.infoIcon}>ℹ️</span>
+            <span className={userManagementStyles.infoIcon}><img src="/images/icons/information.svg" alt="" style={{width: '16px', height: '16px', verticalAlign: 'middle'}} /></span>
             <span className={userManagementStyles.infoTitle}>User Management Information</span>
           </div>
           <div className={userManagementStyles.infoContent}>

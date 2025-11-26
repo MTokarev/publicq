@@ -74,6 +74,9 @@
 .featureIcon {
   font-size: var(--font-size-3xl);
   margin-bottom: var(--spacing-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .featureTitle {

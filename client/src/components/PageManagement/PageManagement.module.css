@@ -1,23 +1,23 @@
 .container {
-  padding: var(--spacing-lg);
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0;
+  max-width: 100%;
 }
 
 .header {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 30px;
 }
 
 .title {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-gray-900);
-  margin: 0 0 var(--spacing-xs) 0;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #111827;
+  letter-spacing: -0.025em;
 }
 
 .subtitle {
-  font-size: var(--font-size-md);
-  color: var(--color-gray-600);
+  font-size: 14px;
+  color: #6b7280;
   margin: 0;
 }
 

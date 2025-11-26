@@ -140,7 +140,7 @@ const PageManagement: React.FC = () => {
   return (
     <div className={pageManagementStyles.container}>
       <div className={pageManagementStyles.header}>
-        <h2 className={pageManagementStyles.title}>📄 Page Management</h2>
+        <h2 className={pageManagementStyles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/clipboard.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Page Management</h2>
         <p className={pageManagementStyles.subtitle}>
           Manage static pages and content across the platform
         </p>
@@ -148,14 +148,14 @@ const PageManagement: React.FC = () => {
 
       {error && (
         <div className={pageManagementStyles.errorBanner}>
-          <span>⚠️ {error}</span>
+          <span style={{display: 'flex', alignItems: 'center', gap: '6px'}}><img src="/images/icons/warning.svg" alt="" style={{width: '16px', height: '16px'}} /> {error}</span>
           <button onClick={() => setError('')} className={pageManagementStyles.closeBanner}>×</button>
         </div>
       )}
 
       {success && (
         <div className={pageManagementStyles.successBanner}>
-          <span>✓ {success}</span>
+          <span style={{display: 'flex', alignItems: 'center', gap: '6px'}}><img src="/images/icons/check.svg" alt="" style={{width: '16px', height: '16px'}} /> {success}</span>
           <button onClick={() => setSuccess('')} className={pageManagementStyles.closeBanner}>×</button>
         </div>
       )}
@@ -168,7 +168,7 @@ const PageManagement: React.FC = () => {
             activeTab === 'contact' && pageManagementStyles.activeTab
           )}
         >
-          📞 Contact Page
+          <img src="/images/icons/chat.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Contact Page
         </button>
         <button
           onClick={() => setActiveTab('other')}
@@ -178,7 +178,7 @@ const PageManagement: React.FC = () => {
           )}
           disabled
         >
-          📋 Other Pages (Coming Soon)
+          <img src="/images/icons/notepad.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Other Pages (Coming Soon)
         </button>
       </div>
 

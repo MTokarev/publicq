@@ -220,7 +220,7 @@ export const ModuleForm = ({ onSuccess, onBackToModules }: Props) => {
         )}
         
         <div style={styles.shortcutHint}>
-          💡 Press {navigator.platform.includes('Mac') ? 'Cmd+Enter' : 'Ctrl+S or Ctrl+Enter'} to create the module {validateForm().length > 0 && '(complete the form first)'}
+          <img src="/images/icons/light-bulb.svg" alt="" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle'}} />Press {navigator.platform.includes('Mac') ? 'Cmd+Enter' : 'Ctrl+S or Ctrl+Enter'} to create the module {validateForm().length > 0 && '(complete the form first)'}
         </div>
         
         <div style={styles.form}>
@@ -366,6 +366,8 @@ const styles = {
     margin: '0 0 1.5rem 0',
   },
   shortcutHint: {
+    display: 'flex',
+    alignItems: 'center',
     fontSize: '0.75rem',
     color: '#6b7280',
     backgroundColor: '#f9fafb',

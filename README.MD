@@ -703,6 +703,19 @@ Built with:
 - [Recharts](https://recharts.org/) - Data visualization
 - [React Router](https://reactrouter.com/) - Navigation
 
+### 🎨 Icons
+
+**Important Notice**: All icons used in this project (`/client/public/images/icons/`) have been purchased and are licensed for use **exclusively within this project**. 
+
+⚠️ **Usage Restrictions:**
+- ✅ **Allowed**: Use icons if you fork this repository and continue working on the PublicQ project
+- ❌ **Prohibited**: Redistribute, reuse, or reproduce these icons in other projects or products
+- ❌ **Prohibited**: Extract icons for use in unrelated applications or commercial products
+
+These icons are proprietary assets and are not covered by the project's open-source license. They may only be used as part of PublicQ or its direct derivatives.
+
+For icon licensing inquiries or commercial use, please contact the project maintainer.
+
 ## 🔍 Technical Notes
 
 ### Default Configuration

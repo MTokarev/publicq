@@ -154,9 +154,9 @@ const CreateBannerModal: React.FC<CreateBannerModalProps> = ({ isOpen, onClose, 
               className={styles.select}
               required
             >
-              <option value={BannerType.Message}>📄 Message</option>
-              <option value={BannerType.Warning}>⚠️ Warning</option>
-              <option value={BannerType.Critical}>🚨 Critical</option>
+              <option value={BannerType.Message}>Message</option>
+              <option value={BannerType.Warning}>Warning</option>
+              <option value={BannerType.Critical}>Critical</option>
             </select>
           </div>
 
@@ -269,9 +269,7 @@ const CreateBannerModal: React.FC<CreateBannerModalProps> = ({ isOpen, onClose, 
           </div>
 
           <div className={styles.keyboardHints}>
-            <span className={styles.hintText}>
-              💡 <strong>Ctrl+Enter</strong> to save • <strong>Esc</strong> to cancel
-            </span>
+            <span className={styles.hintText}><img src="/images/icons/light-bulb.svg" alt="" style={{width: '14px', height: '14px', verticalAlign: 'middle', marginRight: '4px'}} /> <strong>Ctrl+Enter</strong> to save  •  <strong>Esc</strong> to cancel</span>
           </div>
 
           <div className={styles.modalActions}>
@@ -411,9 +409,9 @@ const EditBannerModal: React.FC<EditBannerModalProps> = ({ isOpen, banner, onClo
               className={styles.select}
               required
             >
-              <option value={BannerType.Message}>📄 Message</option>
-              <option value={BannerType.Warning}>⚠️ Warning</option>
-              <option value={BannerType.Critical}>🚨 Critical</option>
+              <option value={BannerType.Message}>Message</option>
+              <option value={BannerType.Warning}>Warning</option>
+              <option value={BannerType.Critical}>Critical</option>
             </select>
           </div>
 
@@ -526,9 +524,7 @@ const EditBannerModal: React.FC<EditBannerModalProps> = ({ isOpen, banner, onClo
           </div>
 
           <div className={styles.keyboardHints}>
-            <span className={styles.hintText}>
-              💡 <strong>Ctrl+Enter</strong> to save • <strong>Esc</strong> to cancel
-            </span>
+            <span className={styles.hintText}><img src="/images/icons/light-bulb.svg" alt="" style={{width: '14px', height: '14px', verticalAlign: 'middle', marginRight: '4px'}} /> <strong>Ctrl+Enter</strong> to save  •  <strong>Esc</strong> to cancel</span>
           </div>
 
           <div className={styles.modalActions}>
@@ -580,9 +576,7 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({ isOpe
         </p>
         
         <div className={styles.keyboardHints}>
-          <span className={styles.hintText}>
-            💡 <strong>Ctrl+Enter</strong> to confirm • <strong>Esc</strong> to cancel
-          </span>
+          <span className={styles.hintText}><img src="/images/icons/light-bulb.svg" alt="" style={{width: '14px', height: '14px', verticalAlign: 'middle', marginRight: '4px'}} /> <strong>Ctrl+Enter</strong> to confirm  •  <strong>Esc</strong> to cancel</span>
         </div>
         
         <div className={styles.modalActions}>
@@ -696,11 +690,11 @@ const BannerManagement: React.FC = () => {
   const getBannerTypeLabel = (type: BannerType): string => {
     switch (type) {
       case BannerType.Message:
-        return '📄 Message';
+        return 'Message';
       case BannerType.Warning:
-        return '⚠️ Warning';
+        return 'Warning';
       case BannerType.Critical:
-        return '🚨 Critical';
+        return 'Critical';
       default:
         return 'Unknown';
     }
@@ -721,7 +715,7 @@ const BannerManagement: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Banner Management</h1>
+        <h2 className={styles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/megaphone.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Banner Management</h2>
         <button onClick={() => setIsCreateModalOpen(true)} className={styles.createButton}>
           Create Banner
         </button>
@@ -729,7 +723,7 @@ const BannerManagement: React.FC = () => {
 
       <div className={styles.infoSection}>
         <div className={styles.infoHeader}>
-          <span className={styles.infoIcon}>ℹ️</span>
+          <span className={styles.infoIcon}><img src="/images/icons/information.svg" alt="" style={{width: '18px', height: '18px'}} /></span>
           <span className={styles.infoTitle}>Banner Management Information</span>
         </div>
         <div className={styles.infoContent}>

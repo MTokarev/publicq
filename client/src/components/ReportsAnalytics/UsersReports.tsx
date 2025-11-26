@@ -458,7 +458,7 @@ const UsersReports: React.FC<UsersReportsProps> = () => {
 
       // Reset button
       if (exportButton) {
-        exportButton.textContent = '📄 Export PDF';
+        exportButton.innerHTML = '<img src="/images/icons/save.svg" alt="" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;" />Export PDF';
         exportButton.disabled = false;
       }
 
@@ -467,7 +467,7 @@ const UsersReports: React.FC<UsersReportsProps> = () => {
       
       const exportButton = document.querySelector('[data-export-button]') as HTMLButtonElement;
       if (exportButton) {
-        exportButton.textContent = '📄 Export PDF';
+        exportButton.innerHTML = '<img src="/images/icons/save.svg" alt="" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;" />Export PDF';
         exportButton.disabled = false;
       }
     }
@@ -534,7 +534,7 @@ const UsersReports: React.FC<UsersReportsProps> = () => {
                 className={`${styles.exportButtonSmall} users-reports-modal-header-button`}
                 data-export-button
               >
-                📄 Export PDF
+                <img src="/images/icons/save.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Export PDF
               </button>
               <button onClick={handleCloseReport} className={`${styles.closeButton} users-reports-modal-header-button users-reports-close-button`}>×</button>
             </div>
@@ -599,42 +599,42 @@ const UsersReports: React.FC<UsersReportsProps> = () => {
                         <>
                           <div className={`${styles.statCard} ${styles.statCardSuccess}`}>
                             <div className={styles.statNumber}>{statusCounts.completed}</div>
-                            <div className={styles.statLabel}>✅ Completed</div>
+                            <div className={styles.statLabel}>Completed</div>
                           </div>
                           {statusCounts.completedLate > 0 && (
                             <div className={`${styles.statCard} ${styles.statCardWarning}`}>
                               <div className={styles.statNumber}>{statusCounts.completedLate}</div>
-                              <div className={styles.statLabel}>🟠 Completed Late</div>
+                              <div className={styles.statLabel}>Completed Late</div>
                             </div>
                           )}
                           {statusCounts.inProgress > 0 && (
                             <div className={`${styles.statCard} ${styles.statCardInProgress}`}>
                               <div className={styles.statNumber}>{statusCounts.inProgress}</div>
-                              <div className={styles.statLabel}>🟡 In Progress</div>
+                              <div className={styles.statLabel}>In Progress</div>
                             </div>
                           )}
                           {statusCounts.incompleteExpired > 0 && (
                             <div className={`${styles.statCard} ${styles.statCardDanger}`}>
                               <div className={styles.statNumber}>{statusCounts.incompleteExpired}</div>
-                              <div className={styles.statLabel}>🔴 Incomplete (Expired)</div>
+                              <div className={styles.statLabel}>Incomplete (Expired)</div>
                             </div>
                           )}
                           {statusCounts.scheduled > 0 && (
                             <div className={`${styles.statCard} ${styles.statCardScheduled}`}>
                               <div className={styles.statNumber}>{statusCounts.scheduled}</div>
-                              <div className={styles.statLabel}>🔵 Scheduled</div>
+                              <div className={styles.statLabel}>Scheduled</div>
                             </div>
                           )}
                           {statusCounts.notSubmitted > 0 && (
                             <div className={`${styles.statCard} ${styles.statCardDanger}`}>
                               <div className={styles.statNumber}>{statusCounts.notSubmitted}</div>
-                              <div className={styles.statLabel}>❌ Not Submitted</div>
+                              <div className={styles.statLabel}>Not Submitted</div>
                             </div>
                           )}
                           {statusCounts.notStarted > 0 && (
                             <div className={`${styles.statCard} ${styles.statCardNeutral}`}>
                               <div className={styles.statNumber}>{statusCounts.notStarted}</div>
-                              <div className={styles.statLabel}>⚪ Not Started</div>
+                              <div className={styles.statLabel}>Not Started</div>
                             </div>
                           )}
                         </>
@@ -666,34 +666,34 @@ const UsersReports: React.FC<UsersReportsProps> = () => {
                     
                     {/* Status Legend Info Box */}
                     <div className={styles.statusLegendBox}>
-                      <h5 className={styles.statusLegendTitle}>📊 Assignment Status Guide</h5>
+                      <h5 className={styles.statusLegendTitle}><img src="/images/icons/chart.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Assignment Status Guide</h5>
                       <div className={styles.statusLegendGrid}>
                         <div className={`${styles.statusLegendItem} ${hoveredStatus === 'completed' ? styles.statusLegendItemHighlighted : ''}`}>
-                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#dcfce7', color: '#166534'}}>✅ Completed</span>
+                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#dcfce7', color: '#166534'}}>Completed</span>
                           <span className={styles.statusLegendText}>All modules finished within deadline</span>
                         </div>
                         <div className={`${styles.statusLegendItem} ${hoveredStatus === 'completed late' ? styles.statusLegendItemHighlighted : ''}`}>
-                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#fed7aa', color: '#ea580c'}}>🟠 Completed Late</span>
+                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#fed7aa', color: '#ea580c'}}>Completed Late</span>
                           <span className={styles.statusLegendText}>Finished after assignment end date</span>
                         </div>
                         <div className={`${styles.statusLegendItem} ${hoveredStatus === 'in progress' ? styles.statusLegendItemHighlighted : ''}`}>
-                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#fef3c7', color: '#92400e'}}>🟡 In Progress</span>
+                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#fef3c7', color: '#92400e'}}>In Progress</span>
                           <span className={styles.statusLegendText}>Currently working within deadline</span>
                         </div>
                         <div className={`${styles.statusLegendItem} ${hoveredStatus === 'incomplete (expired)' ? styles.statusLegendItemHighlighted : ''}`}>
-                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#fecaca', color: '#dc2626'}}>🔴 Incomplete (Expired)</span>
+                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#fecaca', color: '#dc2626'}}>Incomplete (Expired)</span>
                           <span className={styles.statusLegendText}>Started but not finished before deadline</span>
                         </div>
                         <div className={`${styles.statusLegendItem} ${hoveredStatus === 'scheduled' ? styles.statusLegendItemHighlighted : ''}`}>
-                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#e0e7ff', color: '#3730a3'}}>🔵 Scheduled</span>
+                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#e0e7ff', color: '#3730a3'}}>Scheduled</span>
                           <span className={styles.statusLegendText}>Assignment starts in the future</span>
                         </div>
                         <div className={`${styles.statusLegendItem} ${hoveredStatus === 'not submitted' ? styles.statusLegendItemHighlighted : ''}`}>
-                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#fef2f2', color: '#dc2626'}}>❌ Not Submitted</span>
+                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#fef2f2', color: '#dc2626'}}>Not Submitted</span>
                           <span className={styles.statusLegendText}>Deadline passed, never started</span>
                         </div>
                         <div className={`${styles.statusLegendItem} ${hoveredStatus === 'not started' ? styles.statusLegendItemHighlighted : ''}`}>
-                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#f3f4f6', color: '#374151'}}>⚪ Not Started</span>
+                          <span className={styles.statusLegendBadge} style={{backgroundColor: '#f3f4f6', color: '#374151'}}>Not Started</span>
                           <span className={styles.statusLegendText}>Available but not yet started</span>
                         </div>
                       </div>
@@ -805,7 +805,7 @@ const UsersReports: React.FC<UsersReportsProps> = () => {
                 className={`${styles.exportButtonSmall} users-reports-modal-header-button`}
                 data-export-button
               >
-                📄 Export PDF
+                <img src="/images/icons/save.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Export PDF
               </button>
               <button onClick={handleCloseAssignmentReport} className={`${styles.closeButton} users-reports-modal-header-button users-reports-close-button`}>×</button>
             </div>
@@ -925,7 +925,7 @@ const UsersReports: React.FC<UsersReportsProps> = () => {
                         <div className={styles.chartCard}>
                           <h5 className={styles.chartTitle}>Knowledge Strength Analysis</h5>
                           <div className={styles.fewModulesNotice}>
-                            <div className={styles.noticeIcon}>📊</div>
+                            <div className={styles.noticeIcon}><img src="/images/icons/chart.svg" alt="" style={{width: '24px', height: '24px'}} /></div>
                             <div className={styles.noticeText}>
                               <p><strong>Spider Chart Available with 3+ Modules</strong></p>
                               <p>The knowledge strength spider chart provides the best insights when there are 3 or more modules to compare. Currently, this assignment has {assignment.moduleReports.length} module{assignment.moduleReports.length === 1 ? '' : 's'}.</p>

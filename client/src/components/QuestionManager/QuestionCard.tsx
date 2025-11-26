@@ -89,7 +89,7 @@ export const QuestionCard = ({ question, index, readonly, onEdit, onDelete }: Pr
                 style={styles.attachmentButton}
                 onClick={handlePreviewQuestionAttachments}
               >
-                📎 {question.staticFileUrls.length} attachment{question.staticFileUrls.length > 1 ? 's' : ''}
+                <img src="/images/icons/attachment.svg" alt="" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle'}} />{question.staticFileUrls.length} attachment{question.staticFileUrls.length > 1 ? 's' : ''}
               </button>
             </div>
           )}
@@ -138,7 +138,7 @@ export const QuestionCard = ({ question, index, readonly, onEdit, onDelete }: Pr
                     style={styles.attachmentButton}
                     onClick={() => handlePreviewAnswerAttachments(answer, idx)}
                   >
-                    📎 {answer.staticFileUrls.length} attachment{answer.staticFileUrls.length > 1 ? 's' : ''}
+                    <img src="/images/icons/attachment.svg" alt="" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle'}} />{answer.staticFileUrls.length} attachment{answer.staticFileUrls.length > 1 ? 's' : ''}
                   </button>
                 </div>
               )}
@@ -168,7 +168,7 @@ export const QuestionCard = ({ question, index, readonly, onEdit, onDelete }: Pr
               {readonly && (
                 <div style={styles.editNote}>
                   <p style={styles.editNoteText}>
-                    💡 To remove attachments, use the "Edit" button and manage them in the edit form.
+                    <img src="/images/icons/light-bulb.svg" alt="" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle'}} />To remove attachments, use the "Edit" button and manage them in the edit form.
                   </p>
                 </div>
               )}
@@ -397,6 +397,8 @@ const styles = {
     borderRadius: '6px',
   },
   editNoteText: {
+    display: 'flex',
+    alignItems: 'center',
     margin: 0,
     fontSize: '14px',
     color: '#0369a1',

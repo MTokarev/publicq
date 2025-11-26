@@ -64,7 +64,7 @@
 
 .contactItem {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
   padding: 1.5rem;
   background: #f8f9fa;

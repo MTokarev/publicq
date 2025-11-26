@@ -424,8 +424,10 @@ Do NOT repeat any tools that show SUCCESS status above.`}`;
         borderRadius: '8px',
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
       }}>
-        <div style={{ fontSize: '48px', marginBottom: '20px' }}>🤖</div>
-        <h2 style={{ color: '#333', marginBottom: '10px' }}>AI Monkey 🐵 is Disabled</h2>
+        <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center' }}><img src="/images/icons/robot.svg" alt="AI" style={{width: '48px', height: '48px'}} /></div>
+        <h2 style={{ color: '#333', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+          AI Monkey <img src="/images/icons/monkey.svg" alt="" style={{width: '20px', height: '20px'}} /> is Sleeping
+        </h2>
         <p style={{ color: '#666' }}>
           The AI chat feature is currently disabled. Please contact your administrator to enable AI.
         </p>

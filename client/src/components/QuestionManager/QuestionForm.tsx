@@ -500,7 +500,7 @@ export const QuestionForm = ({
         
         <div style={styles.keyboardHints}>
           <span style={styles.hintText}>
-            💡 <strong>Ctrl+Enter</strong> to save • <strong>Ctrl+S</strong> to save • <strong>Esc</strong> to cancel
+            <img src="/images/icons/light-bulb.svg" alt="" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle'}} /> <strong>Ctrl+Enter</strong>  to save  •  <strong>Ctrl+S</strong>  to save  •  <strong>Esc</strong>  to cancel
           </span>
         </div>
         
@@ -724,7 +724,7 @@ export const QuestionForm = ({
                               style={styles.previewAttachmentsButton}
                               onClick={() => handlePreviewAnswerAttachments(answer, index)}
                             >
-                              📎 Preview {answer.staticFileIds.length} attachment{answer.staticFileIds.length > 1 ? 's' : ''}
+                              <img src="/images/icons/attachment.svg" alt="" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle'}} />Preview {answer.staticFileIds.length} attachment{answer.staticFileIds.length > 1 ? 's' : ''}
                             </button>
                           )}
                         </div>
@@ -1261,6 +1261,9 @@ const styles = {
     textAlign: 'center' as const,
   },
   hintText: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     fontSize: '11px',
     color: '#94a3b8',
     fontStyle: 'italic',

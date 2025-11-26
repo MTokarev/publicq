@@ -719,6 +719,8 @@
 }
 
 .statusLegendTitle {
+  display: flex;
+  align-items: center;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   color: var(--color-gray-700);
@@ -752,7 +754,7 @@
   padding: var(--spacing-xs) var(--spacing-xs);
   border-radius: var(--border-radius-lg);
   min-width: 140px;
-  text-align: left;
+  text-align: center;
   flex-shrink: 0;
 }
 

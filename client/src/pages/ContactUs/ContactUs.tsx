@@ -75,7 +75,7 @@ const ContactUs: React.FC = () => {
         <div className={contactStyles.contactInfo}>
           {contactPage?.parts?.email && (
             <div className={contactStyles.contactItem}>
-              <div className={contactStyles.contactIcon}>📧</div>
+              <div className={contactStyles.contactIcon}><img src="/images/icons/email.svg" alt="" style={{width: '32px', height: '32px'}} /></div>
               <div className={contactStyles.contactDetails}>
                 <h3 className={contactStyles.contactLabel}>Email</h3>
                 <a href={`mailto:${contactPage.parts.email}`} className={contactStyles.contactLink}>
@@ -87,7 +87,7 @@ const ContactUs: React.FC = () => {
 
           {contactPage?.parts?.phone && (
             <div className={contactStyles.contactItem}>
-              <div className={contactStyles.contactIcon}>📞</div>
+              <div className={contactStyles.contactIcon}><img src="/images/icons/person.svg" alt="" style={{width: '32px', height: '32px'}} /></div>
               <div className={contactStyles.contactDetails}>
                 <h3 className={contactStyles.contactLabel}>Phone</h3>
                 <a href={`tel:${contactPage.parts.phone}`} className={contactStyles.contactLink}>
@@ -99,7 +99,7 @@ const ContactUs: React.FC = () => {
 
           {contactPage?.parts?.address && (
             <div className={contactStyles.contactItem}>
-              <div className={contactStyles.contactIcon}>📍</div>
+              <div className={contactStyles.contactIcon}><img src="/images/icons/navigation.svg" alt="" style={{width: '32px', height: '32px'}} /></div>
               <div className={contactStyles.contactDetails}>
                 <h3 className={contactStyles.contactLabel}>Address</h3>
                 <p className={contactStyles.contactText}>{contactPage.parts.address}</p>

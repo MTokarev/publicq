@@ -1,38 +1,39 @@
 /* Container */
 .container {
-  padding: var(--spacing-component-lg);
+  padding: 0;
+  max-width: 100%;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-component-lg);
+  margin-bottom: 30px;
 }
 
 .title {
-  font-size: var(--font-size-xxl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-gray-900);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  color: #111827;
+  letter-spacing: -0.025em;
 }
 
 .createButton {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  background-color: var(--color-success);
-  color: white;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
   border: none;
-  border-radius: var(--radius);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  background-color: #10b981;
+  color: #ffffff;
   cursor: pointer;
-  transition: all var(--transition-normal);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
 }
 
 .createButton:hover {
-  background-color: var(--color-success-dark);
+  background-color: #059669;
   transform: translateY(-1px);
   box-shadow: 0 6px 8px -2px rgba(5, 150, 105, 0.4);
 }
@@ -41,39 +42,39 @@
 .infoSection {
   background-color: #f0f9ff;
   border: 1px solid #bae6fd;
-  border-radius: var(--radius);
-  padding: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
 }
 
 .infoHeader {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-sm);
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .infoIcon {
-  font-size: var(--font-size-base);
+  font-size: 16px;
 }
 
 .infoTitle {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  font-weight: 600;
   color: #1e40af;
 }
 
 .infoContent {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: 8px;
 }
 
 .infoText {
-  font-size: var(--font-size-xs);
-  color: var(--color-gray-600);
+  font-size: 13px;
+  color: #374151;
   margin: 0;
-  line-height: var(--line-height-relaxed);
+  line-height: 1.4;
 }
 
 /* Messages */
@@ -465,6 +466,10 @@
 }
 
 .hintText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   font-size: 11px;
   color: #94a3b8;
   font-style: italic;

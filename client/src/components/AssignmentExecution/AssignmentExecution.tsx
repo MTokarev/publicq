@@ -784,7 +784,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         }
         
         return {
-          badge: '🔒 Locked',
+          badge: 'Locked',
           badgeStyle: styles.lockedBadge,
           buttonText: 'Locked',
           buttonStyle: styles.startModuleButtonDisabled,
@@ -794,7 +794,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         };
       case ModuleStatus.WaitForModuleDurationToElapse:
         return {
-          badge: '⏳ Waiting',
+          badge: 'Waiting',
           badgeStyle: styles.waitingBadge,
           buttonText: 'Waiting',
           buttonStyle: styles.startModuleButtonDisabled,
@@ -804,7 +804,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         };
       case ModuleStatus.Scheduled:
         return {
-          badge: '📅 Scheduled',
+          badge: 'Scheduled',
           badgeStyle: styles.scheduledBadge,
           buttonText: 'Scheduled',
           buttonStyle: styles.startModuleButtonDisabled,
@@ -834,7 +834,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         };
       case ModuleStatus.Completed:
         return {
-          badge: '✅ Completed',
+          badge: 'Completed',
           badgeStyle: styles.completedBadge,
           buttonText: 'Completed',
           buttonStyle: styles.startModuleButtonDisabled,
@@ -844,7 +844,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         };
       case ModuleStatus.TimeElapsed:
         return {
-          badge: '⏰ Time Elapsed',
+          badge: 'Time Elapsed',
           badgeStyle: styles.timeElapsedBadge,
           buttonText: 'Time Elapsed',
           buttonStyle: styles.startModuleButtonDisabled,
@@ -1026,7 +1026,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
       <div style={styles.modulesSection}>
         {group.isMemberOrderLocked && (
           <div style={styles.orderNotice}>
-            <span style={styles.noticeIcon}>🔒</span>
+            <span style={styles.noticeIcon}><img src="/images/icons/lock.svg" alt="" style={{width: '20px', height: '20px'}} /></span>
             <p style={styles.noticeText}>
               <strong>Sequential Order Required:</strong> Modules must be completed in the specified order. 
               You cannot start a module until the previous one is completed.
@@ -1035,7 +1035,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         )}
         {group.waitModuleCompletion && (
           <div style={styles.waitNotice}>
-            <span style={styles.noticeIcon}>⏳</span>
+            <span style={styles.noticeIcon}><img src="/images/icons/time.svg" alt="" style={{width: '20px', height: '20px'}} /></span>
             <p style={styles.noticeText}>
               <strong>Module Time Control Enabled:</strong> After completing a module, you must wait for the full 
               duration to elapse before starting the next module, even if you finish early.
@@ -1044,7 +1044,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         )}
         {assignment.showResultsImmediately && (
           <div style={styles.resultsNotice}>
-            <span style={styles.noticeIcon}>📊</span>
+            <span style={styles.noticeIcon}><img src="/images/icons/chart.svg" alt="" style={{width: '20px', height: '20px'}} /></span>
             <p style={styles.noticeText}>
               <strong>Immediate Results Enabled:</strong> Your scores, pass/fail status, and performance details 
               will be visible on this page once you complete each module or when the time runs out.
@@ -1053,7 +1053,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         )}
         {!assignment.showResultsImmediately && (
           <div style={styles.noResultsNotice}>
-            <span style={styles.noticeIcon}>📋</span>
+            <span style={styles.noticeIcon}><img src="/images/icons/clipboard.svg" alt="" style={{width: '20px', height: '20px'}} /></span>
             <p style={styles.noticeText}>
               <strong>Results Not Shown:</strong> Your exam results will not be displayed immediately upon completion. 
               Please contact your exam provider or instructor to obtain your scores and performance details.
@@ -1190,7 +1190,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                                 color: memberState.passed ? '#166534' : '#dc2626',
                                 borderColor: memberState.passed ? '#bbf7d0' : '#fecaca'
                               }}>
-                                {memberState.passed ? '✓ Passed' : '✗ Failed'}
+                                {memberState.passed ? 'Passed' : 'Failed'}
                               </span>
                             )}
                             {memberState.scorePercentage != null && (
@@ -1261,12 +1261,16 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                       )}
                     </div>
                     
-                    {/* Celebration Emojis */}
+                    {/* Celebration Icons */}
                     {celebratingModules.has(memberState.id) && (
                       <div style={styles.celebrationOverlay}>
                         <div style={styles.celebrationCenter}>
                           <div style={styles.celebrationEmojisRow}>
-                            {['🎉', '🥳', '✨'].map((emoji, i) => (
+                            {[
+                              '/images/icons/party.svg',
+                              '/images/icons/party-hat.svg',
+                              '/images/icons/sparkles.svg'
+                            ].map((iconPath, i) => (
                               <div
                                 key={i}
                                 style={{
@@ -1274,7 +1278,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                                   animationDelay: `${i * 0.3}s`
                                 }}
                               >
-                                {emoji}
+                                <img src={iconPath} alt="celebration" style={{width: '48px', height: '48px'}} />
                               </div>
                             ))}
                           </div>
@@ -1330,7 +1334,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                   {/* Section 1: Module Information & Resources */}
                   <div style={styles.modalSection}>
                     <div style={styles.sectionHeader}>
-                      <span style={styles.sectionIcon}>📋</span>
+                      <span style={styles.sectionIcon}><img src="/images/icons/clipboard.svg" alt="" style={{width: '18px', height: '18px'}} /></span>
                       <span style={styles.modalSectionTitle}>Module Information</span>
                     </div>
                     <div style={styles.moduleModalInfo}>
@@ -1348,7 +1352,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                    pendingMemberState.staticFileUrls.length > 0 && (
                     <div style={styles.modalSection}>
                       <div style={styles.sectionHeader}>
-                        <span style={styles.sectionIcon}>📎</span>
+                        <span style={styles.sectionIcon}><img src="/images/icons/filing-cabinet.svg" alt="" style={{width: '18px', height: '18px'}} /></span>
                         <span style={styles.modalSectionTitle}>Module Resources</span>
                       </div>
                       <div style={styles.filePreviewContainer} className="assignment-execution-file-preview-container">
@@ -1385,11 +1389,11 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                   {/* Section 2: Important Notice & Navigation Tips */}
                   <div style={styles.modalSection}>
                     <div style={styles.sectionHeader}>
-                      <span style={styles.sectionIcon}>⚠️</span>
+                      <span style={styles.sectionIcon}><img src="/images/icons/warning.svg" alt="" style={{width: '18px', height: '18px'}} /></span>
                       <span style={styles.modalSectionTitle}>Important Notice</span>
                     </div>
                     <div style={styles.warningContainer}>
-                      <div style={styles.warningIcon}>⏰</div>
+                      <div style={styles.warningIcon}><img src="/images/icons/time.svg" alt="" style={{width: '24px', height: '24px'}} /></div>
                       <div style={styles.warningText}>
                         <ul style={styles.hintsList}>
                           <li>Once you launch this module, the timer will start ticking and cannot be paused</li>
@@ -1403,7 +1407,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                   {/* Navigation Tips Section */}
                   <div style={styles.modalSection}>
                     <div style={styles.sectionHeader}>
-                      <span style={styles.sectionIcon}>📍</span>
+                      <span style={styles.sectionIcon}><img src="/images/icons/information.svg" alt="" style={{width: '18px', height: '18px'}} /></span>
                       <span style={styles.modalSectionTitle}>Navigation Tips</span>
                     </div>
                     <div style={styles.navigationHints}>

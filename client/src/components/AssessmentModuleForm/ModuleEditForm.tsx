@@ -228,10 +228,10 @@ export const ModuleEditForm = ({ moduleId, moduleVersion, onModuleUpdate, onCrea
                 </span>
               </h2>
               <div style={styles.shortcutHint}>
-                💡 <strong>Ctrl+Enter</strong> to save, <strong>Ctrl+S</strong> to save, <strong>Esc</strong> to cancel
+                <img src="/images/icons/light-bulb.svg" alt="" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle'}} /> <strong>Ctrl+Enter</strong>  to save  •  <strong>Ctrl+S</strong>  to save  •  <strong>Esc</strong>  to cancel
                 {moduleVersion.isPublished && (
                   <div style={styles.publishedNote}>
-                    ℹ️ Published modules can have title, introduction, and duration updated. Passing score cannot be changed. Use "New Version" to change passing score.
+                    <img src="/images/icons/information.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle'}} />Published modules can have title, introduction, and duration updated. Passing score cannot be changed. Use "New Version" to change passing score.
                   </div>
                 )}
               </div>
@@ -438,6 +438,8 @@ const styles = {
     border: '1px solid #d1fae5',
   },
   shortcutHint: {
+    display: 'flex',
+    alignItems: 'center',
     fontSize: '12px',
     color: '#6b7280',
     backgroundColor: '#f9fafb',

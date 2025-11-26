@@ -73,6 +73,7 @@ const AnimatedCounter = ({ target, duration = 1000, delay = 0 }: { target: numbe
 const Admin = () => {
   const { userRoles } = useAuth();
   const [activeSection, setActiveSection] = useState<AdminSection>('dashboard');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [userCount, setUserCount] = useState<number>(0);
   const [groupCount, setGroupCount] = useState<number>(0);
   const [moduleCount, setModuleCount] = useState<number>(0);
@@ -204,21 +205,21 @@ const Admin = () => {
   // Get section display info
   const getSectionInfo = (section: AdminSection) => {
     const sectionMap = {
-      dashboard: { title: 'Dashboard', icon: '📊', description: 'Overview and statistics' },
-      users: { title: 'User Management', icon: '👥', description: 'Manage users and permissions' },
-      groups: { title: 'Group Management', icon: '👨‍👩‍👧‍👦', description: 'Organize users into groups' },
-      assignments: { title: 'Assignment Management', icon: '📝', description: 'Create and manage assignments' },
-      assessments: { title: 'Module Management', icon: '📚', description: 'Manage assessment modules' },
-      reports: { title: 'Reports & Analytics', icon: '📈', description: 'View reports and analytics' },
-      email: { title: 'Email Configuration', icon: '📧', description: 'Configure email settings' },
-      banners: { title: 'Banner Management', icon: '📢', description: 'Manage site-wide banners' },
-      pages: { title: 'Page Management', icon: '📄', description: 'Manage static pages' },
-      ai: { title: 'AI Settings', icon: '🤖', description: 'Configure AI Monkey settings' },
-      'ai-chat': { title: 'AI Chat', icon: '💬', description: 'Chat with AI Monkey' },
-      security: { title: 'Security Settings', icon: '🔒', description: 'Manage security and authentication' },
-      cache: { title: 'Cache Management', icon: '🗄️', description: 'Manage application cache' },
-      storage: { title: 'File Storage', icon: '💾', description: 'Configure file storage settings' },
-      logs: { title: 'Log Management', icon: '📋', description: 'View and manage system logs' },
+      dashboard: { title: 'Dashboard', icon: <img src="/images/icons/chart.svg" alt="Dashboard" style={{width: '28px', height: '28px'}} />, description: 'Overview and statistics' },
+      users: { title: 'User Management', icon: <img src="/images/icons/users.svg" alt="Users" style={{width: '28px', height: '28px'}} />, description: 'Manage users and permissions' },
+      groups: { title: 'Group Management', icon: <img src="/images/icons/users.svg" alt="Groups" style={{width: '28px', height: '28px'}} />, description: 'Organize users into groups' },
+      assignments: { title: 'Assignment Management', icon: <img src="/images/icons/clipboard.svg" alt="Assignments" style={{width: '28px', height: '28px'}} />, description: 'Create and manage assignments' },
+      assessments: { title: 'Module Management', icon: <img src="/images/icons/books.svg" alt="Modules" style={{width: '28px', height: '28px'}} />, description: 'Manage assessment modules' },
+      reports: { title: 'Reports & Analytics', icon: <img src="/images/icons/line-chart.svg" alt="Reports" style={{width: '28px', height: '28px'}} />, description: 'View reports and analytics' },
+      email: { title: 'Email Configuration', icon: <img src="/images/icons/chat.svg" alt="Email" style={{width: '28px', height: '28px'}} />, description: 'Configure email settings' },
+      banners: { title: 'Banner Management', icon: <img src="/images/icons/megaphone.svg" alt="Banners" style={{width: '28px', height: '28px'}} />, description: 'Manage site-wide banners' },
+      pages: { title: 'Page Management', icon: <img src="/images/icons/clipboard.svg" alt="Pages" style={{width: '28px', height: '28px'}} />, description: 'Manage static pages' },
+      ai: { title: 'AI Settings', icon: <img src="/images/icons/robot.svg" alt="AI" style={{width: '28px', height: '28px'}} />, description: 'Configure AI Monkey settings' },
+      'ai-chat': { title: 'AI Chat', icon: <img src="/images/icons/chat.svg" alt="Chat" style={{width: '28px', height: '28px'}} />, description: 'Chat with AI Monkey' },
+      security: { title: 'Security Settings', icon: <img src="/images/icons/lock.svg" alt="Security" style={{width: '28px', height: '28px'}} />, description: 'Manage security and authentication' },
+      cache: { title: 'Cache Management', icon: <img src="/images/icons/filing-cabinet.svg" alt="Cache" style={{width: '28px', height: '28px'}} />, description: 'Manage application cache' },
+      storage: { title: 'File Storage', icon: <img src="/images/icons/save.svg" alt="Storage" style={{width: '28px', height: '28px'}} />, description: 'Configure file storage settings' },
+      logs: { title: 'Log Management', icon: <img src="/images/icons/clipboard.svg" alt="Logs" style={{width: '28px', height: '28px'}} />, description: 'View and manage system logs' },
     };
     return sectionMap[section] || sectionMap.dashboard;
   };
@@ -482,7 +483,7 @@ const Admin = () => {
               [cssStyles.activeNavButton]: activeSection === 'dashboard'
             })}
           >
-            📊 Dashboard
+            <img src="/images/icons/chart.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Dashboard
           </button>
           {UserPolicies.hasAdminAccess(userRoles) && (
             <button
@@ -491,7 +492,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'ai'
               })}
             >
-              ⚙️ AI Settings
+              <img src="/images/icons/robot.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> AI Settings
             </button>
           )}
           {UserPolicies.hasContributorAccess(userRoles) && (
@@ -501,7 +502,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'ai-chat'
               })}
             >
-              💬 AI Chat
+              <img src="/images/icons/chat.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> AI Chat
             </button>
           )}
           {UserPolicies.hasManagerAccess(userRoles) && (
@@ -511,7 +512,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'assignments'
               })}
             >
-              📋 Assignments
+              <img src="/images/icons/clipboard.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Assignments
             </button>
           )}
           {UserPolicies.hasManagerAccess(userRoles) && (
@@ -521,7 +522,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'banners'
               })}
             >
-              📢 Banners
+              <img src="/images/icons/megaphone.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Banners
             </button>
           )}
           {UserPolicies.hasManagerAccess(userRoles) && (
@@ -531,7 +532,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'pages'
               })}
             >
-              📄 Pages
+              <img src="/images/icons/clipboard.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Pages
             </button>
           )}
           {UserPolicies.hasAdminAccess(userRoles) && (
@@ -541,7 +542,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'cache'
               })}
             >
-              🗄️ Cache
+              <img src="/images/icons/filing-cabinet.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Cache
             </button>
           )}
           {UserPolicies.hasAdminAccess(userRoles) && (
@@ -551,7 +552,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'email'
               })}
             >
-              📧 Email
+              <img src="/images/icons/chat.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Email
             </button>
           )}
           {UserPolicies.hasAdminAccess(userRoles) && (
@@ -561,7 +562,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'storage'
               })}
             >
-              💾 File Storage
+              <img src="/images/icons/save.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> File Storage
             </button>
           )}
           {UserPolicies.hasContributorAccess(userRoles) && (
@@ -571,7 +572,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'groups'
               })}
             >
-              👨‍👩‍👧‍👦 Groups
+              <img src="/images/icons/users.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Groups
             </button>
           )}
           {UserPolicies.hasAdminAccess(userRoles) && (
@@ -581,7 +582,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'logs'
               })}
             >
-              📋 Logs
+              <img src="/images/icons/clipboard.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Logs
             </button>
           )}
           {UserPolicies.hasContributorAccess(userRoles) && (
@@ -591,7 +592,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'assessments'
               })}
             >
-              📚 Modules
+              <img src="/images/icons/books.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Modules
             </button>
           )}
           {UserPolicies.hasManagerAccess(userRoles) && (
@@ -601,7 +602,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'reports'
               })}
             >
-              📈 Reports & Analytics
+              <img src="/images/icons/line-chart.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Reports & Analytics
             </button>
           )}
           {UserPolicies.hasAdminAccess(userRoles) && (
@@ -611,7 +612,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'security'
               })}
             >
-              🔐 Security
+              <img src="/images/icons/lock.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Security
             </button>
           )}
           {UserPolicies.hasManagerAccess(userRoles) && (
@@ -621,7 +622,7 @@ const Admin = () => {
                 [cssStyles.activeNavButton]: activeSection === 'users'
               })}
             >
-              👥 Users
+              <img src="/images/icons/users.svg" alt="" style={{width: '16px', height: '16px', marginRight: '8px'}} /> Users
             </button>
           )}
         </nav>
@@ -630,64 +631,165 @@ const Admin = () => {
       {/* Section Header */}
       <div className={cssStyles.sectionHeader}>
         <div className={cssStyles.sectionInfo}>
-          <span className={cssStyles.sectionIcon}>{getSectionInfo(activeSection).icon}</span>
           <div className={cssStyles.sectionText}>
-            <h1 className={cssStyles.sectionTitle}>{getSectionInfo(activeSection).title}</h1>
+            <h2 style={{ margin: 0, fontSize: 'var(--font-size-xl)', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-gray-900)', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'nowrap' }}>
+              {getSectionInfo(activeSection).title} {getSectionInfo(activeSection).icon}
+            </h2>
             <p className={cssStyles.sectionDescription}>{getSectionInfo(activeSection).description}</p>
           </div>
         </div>
         
         {/* Section Dropdown for Quick Navigation */}
-        <div className={cssStyles.sectionDropdown}>
-          <select 
-            value={activeSection} 
-            onChange={(e) => navigateToSection(e.target.value as AdminSection)}
-            className={cssStyles.sectionSelect}
+        <div className={cssStyles.sectionDropdown} style={{ position: 'relative' }}>
+          <button 
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className={cssStyles.sectionSelectButton}
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', border: '1px solid #ccc', borderRadius: '4px', background: 'white', cursor: 'pointer', minWidth: '250px' }}
           >
-            <option value="dashboard">📊 Dashboard</option>
-            {UserPolicies.hasAdminAccess(userRoles) && (
-              <option value="ai">⚙️ AI Settings</option>
-            )}
-            {UserPolicies.hasContributorAccess(userRoles) && (
-              <option value="ai-chat">💬 AI Chat</option>
-            )}
-            {UserPolicies.hasManagerAccess(userRoles) && (
-              <option value="assignments">📝 Assignments</option>
-            )}
-            {UserPolicies.hasManagerAccess(userRoles) && (
-              <option value="banners">📢 Banners</option>
-            )}
-            {UserPolicies.hasManagerAccess(userRoles) && (
-              <option value="pages">📄 Pages</option>
-            )}
-            {UserPolicies.hasAdminAccess(userRoles) && (
-              <option value="cache">🗄️ Cache</option>
-            )}
-            {UserPolicies.hasAdminAccess(userRoles) && (
-              <option value="email">📧 Email</option>
-            )}
-            {UserPolicies.hasAdminAccess(userRoles) && (
-              <option value="storage">💾 File Storage</option>
-            )}
-            {UserPolicies.hasContributorAccess(userRoles) && (
-              <option value="groups">👨‍👩‍👧‍👦 Groups</option>
-            )}
-            {UserPolicies.hasAdminAccess(userRoles) && (
-              <option value="logs">📋 Logs</option>
-            )}
-            {UserPolicies.hasContributorAccess(userRoles) && (
-              <option value="assessments">📚 Modules</option>
-            )}
-            {UserPolicies.hasManagerAccess(userRoles) && (
-              <option value="reports">📈 Reports & Analytics</option>
-            )}
-            {UserPolicies.hasAdminAccess(userRoles) && (
-              <option value="security">🔒 Security</option>
-            )}
-            {UserPolicies.hasManagerAccess(userRoles) && (
-              <option value="users">👥 Users</option>
-            )}
-          </select>
+            {getSectionInfo(activeSection).icon}
+            <span style={{ flex: 1, textAlign: 'left' }}>{getSectionInfo(activeSection).title}</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ opacity: 0.5 }}>
+              <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          
+          {isDropdownOpen && (
+            <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: 'white', border: '1px solid #ccc', borderRadius: '4px', marginTop: '4px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', zIndex: 1000, maxHeight: '400px', overflowY: 'auto' }}>
+              <button
+                onClick={() => { navigateToSection('dashboard'); setIsDropdownOpen(false); }}
+                style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'dashboard' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+              >
+                {getSectionInfo('dashboard').icon}
+                <span>Dashboard</span>
+              </button>
+              {UserPolicies.hasAdminAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('ai'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'ai' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('ai').icon}
+                  <span>AI Settings</span>
+                </button>
+              )}
+              {UserPolicies.hasContributorAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('ai-chat'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'ai-chat' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('ai-chat').icon}
+                  <span>AI Chat</span>
+                </button>
+              )}
+              {UserPolicies.hasManagerAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('assignments'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'assignments' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('assignments').icon}
+                  <span>Assignments</span>
+                </button>
+              )}
+              {UserPolicies.hasManagerAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('banners'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'banners' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('banners').icon}
+                  <span>Banners</span>
+                </button>
+              )}
+              {UserPolicies.hasManagerAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('pages'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'pages' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('pages').icon}
+                  <span>Pages</span>
+                </button>
+              )}
+              {UserPolicies.hasAdminAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('cache'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'cache' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('cache').icon}
+                  <span>Cache</span>
+                </button>
+              )}
+              {UserPolicies.hasAdminAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('email'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'email' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('email').icon}
+                  <span>Email</span>
+                </button>
+              )}
+              {UserPolicies.hasAdminAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('storage'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'storage' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('storage').icon}
+                  <span>File Storage</span>
+                </button>
+              )}
+              {UserPolicies.hasContributorAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('groups'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'groups' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('groups').icon}
+                  <span>Groups</span>
+                </button>
+              )}
+              {UserPolicies.hasAdminAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('logs'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'logs' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('logs').icon}
+                  <span>Logs</span>
+                </button>
+              )}
+              {UserPolicies.hasContributorAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('assessments'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'assessments' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('assessments').icon}
+                  <span>Modules</span>
+                </button>
+              )}
+              {UserPolicies.hasManagerAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('reports'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'reports' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('reports').icon}
+                  <span>Reports & Analytics</span>
+                </button>
+              )}
+              {UserPolicies.hasAdminAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('security'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'security' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('security').icon}
+                  <span>Security</span>
+                </button>
+              )}
+              {UserPolicies.hasManagerAccess(userRoles) && (
+                <button
+                  onClick={() => { navigateToSection('users'); setIsDropdownOpen(false); }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', width: '100%', border: 'none', background: activeSection === 'users' ? '#f0f0f0' : 'white', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  {getSectionInfo('users').icon}
+                  <span>Users</span>
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
       
@@ -743,7 +845,7 @@ const DashboardContent = ({
   if (loading) {
     return (
       <div className={cssStyles.dashboardContainer}>
-        <h2 className={cssStyles.dashboardTitle}>Admin Dashboard</h2>
+        <h2 className={cssStyles.dashboardTitle} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/chart.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Admin Dashboard</h2>
         <div className={cssStyles.loadingContainer}>
           <p className={cssStyles.loadingText}>Loading dashboard data...</p>
         </div>
@@ -754,7 +856,7 @@ const DashboardContent = ({
   if (error) {
     return (
       <div className={cssStyles.dashboardContainer}>
-        <h2 className={cssStyles.dashboardTitle}>Admin Dashboard</h2>
+        <h2 className={cssStyles.dashboardTitle} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/chart.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Admin Dashboard</h2>
         <div className={cssStyles.errorContainer}>
           <p className={cssStyles.errorText}>{error}</p>
         </div>
@@ -764,7 +866,7 @@ const DashboardContent = ({
 
   return (
     <div className={cssStyles.dashboardContainer}>
-      <h2 className={cssStyles.dashboardTitle}>Admin Dashboard</h2>
+      <h2 className={cssStyles.dashboardTitle} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/chart.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Admin Dashboard</h2>
       <div className={cssStyles.statsGrid}>
         <div
           className={cssStyles.statCard}
@@ -816,7 +918,7 @@ const DashboardContent = ({
         <p>Welcome to the PublicQ Admin Panel. Use the navigation menu on the left to manage different aspects of the system.</p>
         <div className={cssStyles.statisticsNote}>
           <p className={cssStyles.statisticsNoteText}>
-            <span className={cssStyles.infoIcon}>ℹ️</span>
+            <img src="/images/icons/information.svg" alt="Info" className={cssStyles.infoIcon} style={{width: '16px', height: '16px'}} />
             Statistics are updated periodically and may not reflect real-time changes.
           </p>
         </div>
