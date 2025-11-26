@@ -29,7 +29,7 @@
 /* Back Button */
 .backButton {
   padding: 10px var(--spacing-lg);
-  background-color: var(--color-gray-600);
+  background-color: rgba(59, 130, 246, 0.85);
   color: var(--color-white);
   border: none;
   border-radius: var(--radius);
@@ -40,7 +40,7 @@
 }
 
 .backButton:hover {
-  background-color: var(--color-gray-700);
+  background-color: rgba(59, 130, 246, 0.95);
 }
 
 /* ======================================

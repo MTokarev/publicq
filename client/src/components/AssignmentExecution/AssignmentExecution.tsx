@@ -62,6 +62,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
   const [currentModalSection, setCurrentModalSection] = useState(1);
   const [canScrollDown, setCanScrollDown] = useState(false);
   const [celebratingModules, setCelebratingModules] = useState<Set<string>>(new Set());
+  const [launching, setLaunching] = useState(false);
 
   // Update UI every minute to refresh time remaining displays
   useEffect(() => {
@@ -653,8 +654,8 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
   };
 
   const handleModuleButtonClick = async (memberState: GroupMemberState) => {
-    // Prevent clicks while data is still loading
-    if (loading) {
+    // Prevent clicks while data is still loading or launching
+    if (loading || launching) {
       return;
     }
     
@@ -669,6 +670,8 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
       }
       
       if (statusEnum === ModuleStatus.InProgress) {
+        // Set launching state for continue action
+        setLaunching(true);
         // Get existing module progress for modules already in progress
         const progressResponse = await sessionService.getModuleProgress(
           user.id,
@@ -691,17 +694,21 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
           });
         } else {
           setError('Failed to access module progress: ' + (progressResponse.message || 'Unknown error'));
+          setLaunching(false);
         }
       }
     } catch (err: any) {
       setError('Failed to start module: ' + (err.response?.data?.message || err.message));
+      setLaunching(false);
     }
   };
 
   const handleLaunchConfirm = async () => {
-    if (!pendingMemberState) {
+    if (!pendingMemberState || launching) {
       return;
     }
+    
+    setLaunching(true);
     
     try {
       // Create new module progress when user starts a module for the first time
@@ -732,11 +739,13 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         setError('Failed to launch module: ' + (progressResponse.message || 'Unknown error'));
         setShowLaunchModal(false);
         setPendingMemberState(null);
+        setLaunching(false);
       }
     } catch (err: any) {
       setError('Failed to launch module: ' + (err.response?.data?.message || err.message));
       setShowLaunchModal(false);
       setPendingMemberState(null);
+      setLaunching(false);
     }
   };
 
@@ -1228,7 +1237,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                       {statusInfo.showButton && (
                         <button 
                           style={statusInfo.buttonStyle}
-                          disabled={!statusInfo.isEnabled}
+                          disabled={!statusInfo.isEnabled || launching}
                           onClick={() => handleModuleButtonClick(memberState)}
                           onMouseEnter={(e) => {
                             if (statusInfo.isEnabled) {
@@ -1257,7 +1266,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                             }
                           }}
                         >
-                          {statusInfo.buttonText}
+                          {launching ? 'Loading...' : statusInfo.buttonText}
                         </button>
                       )}
                     </div>
@@ -1470,8 +1479,9 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                       onClick={handleLaunchConfirm}
                       style={styles.modalConfirmButton}
                       className="assignment-execution-modal-button assignment-execution-modal-confirm-button"
+                      disabled={launching}
                     >
-                      Launch Module
+                      {launching ? 'Launching...' : 'Launch Module'}
                     </button>
                   </div>
                 )}
@@ -1553,9 +1563,9 @@ const styles: Record<string, React.CSSProperties> = {
   },
   backButtonSmall: {
     padding: '8px 16px',
-    backgroundColor: '#ffffff',
-    color: '#374151',
-    border: '1px solid #d1d5db',
+    backgroundColor: 'rgba(59, 130, 246, 0.85)',
+    color: 'white',
+    border: 'none',
     borderRadius: '8px',
     cursor: 'pointer',
     fontSize: '14px',
@@ -1954,7 +1964,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   backButton: {
     padding: '12px 24px',
-    backgroundColor: '#3b82f6',
+    backgroundColor: 'rgba(59, 130, 246, 0.85)',
     color: 'white',
     border: 'none',
     borderRadius: '8px',
@@ -1962,6 +1972,9 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '16px',
     fontWeight: '500',
     transition: 'all 0.2s ease-in-out',
+  },
+  backButtonHover: {
+    backgroundColor: 'rgba(59, 130, 246, 0.95)',
   },
   modalOverlay: {
     position: 'fixed',
