@@ -6,15 +6,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #303E4F 0%, #283341 100%);
+  background: linear-gradient(135deg, #f0f9ff 0%, #f5f8ff 50%, #fafbff 100%);
   padding: 1rem 2rem;
-  color: var(--color-white);
+  color: var(--color-gray-900);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: none;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
   min-height: 70px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
 }
 
 .logo {
@@ -44,7 +44,7 @@
 }
 
 .navLink {
-  color: var(--color-gray-200);
+  color: var(--color-gray-700);
   text-decoration: none;
   padding: 0.75rem 1.25rem;
   border-radius: var(--radius);
@@ -62,8 +62,8 @@
 }
 
 .navLink:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--color-white);
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-900);
   transform: none;
   box-shadow: none;
 }

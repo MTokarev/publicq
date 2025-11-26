@@ -93,6 +93,12 @@ function HomePage() {
               </Link>
             )}
           </div>
+
+          <div className={homeStyles.footer}>
+            <p className={homeStyles.footerText}>
+              Powered by <a href="https://publicq.app" target="_blank" rel="noopener noreferrer" className={homeStyles.footerLink}>PublicQ</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -192,6 +192,32 @@
   margin-top: var(--spacing-xs);
 }
 
+/* Footer Styles */
+.footer {
+  margin-top: var(--spacing-3xl);
+  padding-top: var(--spacing-2xl);
+  border-top: var(--border-width) solid var(--color-gray-200);
+}
+
+.footerText {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  margin: 0;
+  text-align: center;
+}
+
+.footerLink {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: var(--transition);
+}
+
+.footerLink:hover {
+  color: var(--color-blue-700);
+  text-decoration: underline;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .homePage {

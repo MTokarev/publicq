@@ -15,21 +15,22 @@
 /* ===== SIDEBAR ===== */
 .sidebar {
   width: 300px;
-  background-color: #303E4F;
+  background: linear-gradient(180deg, #f5f8ff 0%, #fafbff 50%, #ffffff 100%);
   padding: var(--spacing-lg);
-  color: var(--color-white);
+  color: var(--color-gray-900);
   position: sticky;
   top: 0;
   height: calc(100vh - 70px);
   overflow-y: auto;
   flex-shrink: 0;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: none;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
 }
 
 .title {
   font-size: var(--font-size-lg);
   margin-bottom: var(--spacing-xl);
-  color: var(--color-white);
+  color: var(--color-gray-900);
   text-align: center;
 }
 
@@ -44,7 +45,7 @@
   padding: var(--spacing-sm) var(--spacing-md);
   border: none;
   background-color: transparent;
-  color: var(--color-white);
+  color: var(--color-gray-700);
   text-align: left;
   cursor: pointer;
   border-radius: var(--border-radius-sm);
@@ -56,7 +57,7 @@
 }
 
 .navButton:hover {
-  background-color: var(--color-gray-700);
+  background-color: var(--color-gray-200);
 }
 
 .navButton:focus {
@@ -65,7 +66,8 @@
 }
 
 .activeNavButton {
-  background-color: var(--color-gray-700);
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 /* ===== MAIN CONTENT ===== */
