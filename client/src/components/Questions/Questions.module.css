@@ -8,9 +8,11 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  height: 100vh;
   background-color: var(--color-gray-50);
   padding: var(--spacing-sm);
-  padding-bottom: 0;
+  padding-bottom: var(--spacing-sm);
+  overflow: hidden;
 }
 
 .header {
@@ -173,20 +175,34 @@
   background-color: var(--color-white);
   border-radius: var(--radius-lg);
   padding: var(--spacing-sm);
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
   box-shadow: var(--shadow);
   transform: translateX(0);
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   opacity: 1;
   position: relative;
   user-select: none;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .questionHeader {
+  margin-bottom: 0;
+}
+
+.questionHeaderTop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.questionHeaderTop h3 {
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .questionHeaderSeparator {
@@ -373,6 +389,8 @@
   right: 0;
   z-index: 100;
   margin-top: auto;
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
 }
 
 .navigationControls {
@@ -385,19 +403,23 @@
 .mainButtons {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: 8px;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .navigationButton {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  flex: 1 1 120px;
+  min-width: 120px;
+  padding: 10px 16px;
   background-color: var(--color-primary);
   color: var(--color-white);
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
-  font-size: var(--text-sm);
+  font-size: 13px;
   font-weight: 600;
-  min-width: 100px;
+  white-space: nowrap;
   transition: var(--transition);
 }
 
@@ -406,27 +428,31 @@
 }
 
 .navigationButtonDisabled {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  flex: 1 1 120px;
+  min-width: 120px;
+  padding: 10px 16px;
   background-color: var(--color-gray-200);
   color: var(--color-gray-400);
   border: none;
   border-radius: var(--radius);
   cursor: not-allowed;
-  font-size: var(--text-sm);
+  font-size: 13px;
   font-weight: 600;
-  min-width: 100px;
+  white-space: nowrap;
 }
 
 .submitButton {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  flex: 1 1 120px;
+  min-width: 120px;
+  padding: 10px 16px;
   background-color: var(--color-success);
   color: var(--color-white);
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
-  font-size: var(--text-sm);
+  font-size: 13px;
   font-weight: 600;
-  min-width: 120px;
+  white-space: nowrap;
   transition: var(--transition);
 }
 
@@ -470,15 +496,16 @@
 }
 
 .goToButton {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  flex: 0 1 auto;
+  padding: 10px 16px;
   background-color: var(--color-gray-500);
   color: var(--color-white);
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
-  font-size: var(--text-sm);
+  font-size: 13px;
   font-weight: 600;
-  min-width: 100px;
+  white-space: nowrap;
   transition: var(--transition);
 }
 
@@ -975,20 +1002,25 @@
   }
   
   .questionContainer {
-    padding: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+    padding: 8px;
+    margin-bottom: var(--spacing-sm);
   }
   
   .questionHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
     margin-bottom: var(--spacing-md);
   }
   
-  .questionHeader h3 {
-    font-size: 18px;
+  .questionHeaderTop {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  
+  .questionHeaderTop h3 {
+    font-size: 16px;
     margin: 0;
+    white-space: nowrap;
   }
   
   .questionText {
@@ -1017,27 +1049,30 @@
   }
   
   .navigation {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
     position: sticky;
     bottom: 0;
   }
   
   .navigationControls {
-    flex-direction: column;
-    gap: var(--spacing-md);
+    width: 100%;
   }
   
   .mainButtons {
-    flex-direction: column;
-    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
     width: 100%;
+    justify-content: space-between;
   }
   
   .navigationButton,
-  .submitButton {
-    width: 100%;
-    padding: 12px;
-    font-size: var(--text-base);
+  .submitButton,
+  .goToButton {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 13px;
+    white-space: nowrap;
   }
   
   .goToContainer {
@@ -1128,11 +1163,26 @@
     padding: 8px;
     min-width: 270px;
     overflow-x: auto;
+    margin-bottom: var(--spacing-sm);
   }
   
-  .questionHeader h3 {
-    font-size: var(--text-base);
-    word-break: break-word;
+  .questionHeaderTop {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  
+  .questionHeaderTop h3 {
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+  }
+  
+  .questionType {
+    font-size: 10px;
+    padding: 3px 8px;
+    white-space: nowrap;
   }
   
   .questionText {
@@ -1173,11 +1223,28 @@
   }
   
   .navigationButton,
-  .submitButton {
-    padding: 10px 8px;
-    font-size: var(--text-sm);
-    min-height: 40px;
-    word-break: break-word;
+  .submitButton,
+  .goToButton {
+    flex: 1;
+    padding: 8px 6px;
+    font-size: 11px;
+    min-height: 36px;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .mainButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .navigationControls {
+    width: 100%;
   }
   
   .goToContainer {

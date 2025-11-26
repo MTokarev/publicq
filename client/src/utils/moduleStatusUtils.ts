@@ -68,30 +68,30 @@ export const getModuleStatusDisplayText = (status: ModuleStatus | string): strin
 };
 
 /**
- * Gets the appropriate emoji icon for a module status
+ * Gets the appropriate icon path for a module status
  * @param status - The module status
- * @returns The emoji icon for the status
+ * @returns The icon path for the status
  */
 export const getModuleStatusIcon = (status: ModuleStatus | string): string => {
   const statusEnum = convertToModuleStatusEnum(status);
   
   switch (statusEnum) {
     case ModuleStatus.Locked:
-      return '🔒';
+      return '/images/icons/lock.svg';
     case ModuleStatus.WaitForModuleDurationToElapse:
-      return '⏳';
+      return '/images/icons/time.svg';
     case ModuleStatus.Scheduled:
-      return '📅';
+      return '/images/icons/navigation.svg';
     case ModuleStatus.NotStarted:
-      return '▶️';
+      return '/images/icons/rocket.svg';
     case ModuleStatus.InProgress:
-      return '⏳';
+      return '/images/icons/progress.svg';
     case ModuleStatus.Completed:
-      return '✅';
+      return '/images/icons/check.svg';
     case ModuleStatus.TimeElapsed:
-      return '⏰';
+      return '/images/icons/time.svg';
     default:
-      return '❓';
+      return '/images/icons/information.svg';
   }
 };
 

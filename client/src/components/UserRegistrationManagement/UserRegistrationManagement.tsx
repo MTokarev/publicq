@@ -231,14 +231,14 @@ const UserRegistrationManagement: React.FC<UserRegistrationManagementProps> = ({
 
           {error && (
             <div style={styles.errorMessage}>
-              <span>❌</span>
+              <img src="/images/icons/fail.svg" alt="Error" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle', display: 'inline-block'}} />
               {error}
             </div>
           )}
 
           {success && (
             <div style={styles.successMessage}>
-              <span>✅</span>
+              <img src="/images/icons/check.svg" alt="Success" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle', display: 'inline-block'}} />
               {success}
             </div>
           )}

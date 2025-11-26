@@ -201,6 +201,7 @@ export const DemoExam: React.FC = () => {
               onClick={handleStartDemo} 
               className={styles.startButton}
             >
+              <img src="/images/icons/rocket.svg" alt="" style={{width: '18px', height: '18px', marginRight: '8px'}} />
               {demoState.isComplete ? 'Retake Assessment' : 'Start Assessment'}
             </button>
             
@@ -274,6 +275,7 @@ export const DemoExam: React.FC = () => {
               onClick={handleRetakeDemo} 
               className={styles.retakeButton}
             >
+              <img src="/images/icons/rocket.svg" alt="" style={{width: '18px', height: '18px', marginRight: '8px'}} />
               Retake Assessment
             </button>
             

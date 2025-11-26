@@ -218,17 +218,16 @@ const CacheManagement: React.FC<CacheManagementProps> = ({ cacheConfig, setCache
                 <p className={styles.infoText}>
                   <strong>Redis Health:</strong> {healthStatus.loading ? (
                     <>
-                      <span className={styles.healthSpinner}>⏳</span> Checking...
+                      <img src="/images/icons/progress.svg" alt="Loading" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle', display: 'inline-block'}} /> Checking...
                     </>
                   ) : healthStatus.message ? (
                     <>
-                      <span className={styles.healthIcon}>
-                        {healthStatus.isHealthy ? '✅' : '❌'}
-                      </span> {healthStatus.isHealthy ? 'Connected' : 'Connection Failed'}
+                      <img src={healthStatus.isHealthy ? '/images/icons/check.svg' : '/images/icons/fail.svg'} alt={healthStatus.isHealthy ? 'Connected' : 'Failed'} style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle', display: 'inline-block'}} />
+                      {healthStatus.isHealthy ? 'Connected' : 'Connection Failed'}
                     </>
                   ) : (
                     <>
-                      <span className={styles.healthIcon}>⚪</span> Not checked yet
+                      <img src="/images/icons/information.svg" alt="Not checked" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle', display: 'inline-block'}} /> Not checked yet
                     </>
                   )}
                 </p>

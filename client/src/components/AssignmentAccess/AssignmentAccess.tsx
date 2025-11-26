@@ -433,7 +433,22 @@ const AssignmentAccess: React.FC<AssignmentAccessProps> = ({
 
       {/* Assignment List Header */}
       {(mode === 'authenticated' || examTakerInfo) && assignments.length > 0 && (
-        <h3 style={styles.assignmentsHeader}>Your Available Assignments</h3>
+        <>
+          <div style={styles.demoInfoBox}>
+            <div style={styles.demoInfoHeader}>
+              <img src="/images/icons/rocket.svg" alt="" style={styles.demoInfoIcon} />
+              <h3 style={styles.demoInfoTitle}>New to the platform?</h3>
+            </div>
+            <p style={styles.demoInfoText}>
+              Before launching a module, you can use <strong>Demo Mode</strong> to familiarize yourself with the exam experience. 
+              Try it out to understand how questions work, navigation, and submission process without affecting your actual assignments.
+            </p>
+            <a href="/demo" style={styles.demoInfoLink}>
+              Try Demo Mode →
+            </a>
+          </div>
+          <h3 style={styles.assignmentsHeader}>Your Available Assignments</h3>
+        </>
       )}
 
       {/* Assignment List - shown for both modes after ID validation */}
@@ -550,6 +565,46 @@ const styles: Record<string, React.CSSProperties> = {
     borderBottom: '2px solid #e5e7eb',
     paddingBottom: '8px',
   },
+  demoInfoBox: {
+    marginTop: '32px',
+    marginBottom: '24px',
+    padding: '20px 24px',
+    backgroundColor: '#f0f9ff',
+    border: '1px solid #bae6fd',
+    borderRadius: '12px',
+    boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+  },
+  demoInfoHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    marginBottom: '12px',
+  },
+  demoInfoIcon: {
+    width: '24px',
+    height: '24px',
+  },
+  demoInfoTitle: {
+    fontSize: '18px',
+    fontWeight: '600',
+    margin: '0',
+    color: '#0c4a6e',
+  },
+  demoInfoText: {
+    fontSize: '14px',
+    color: '#0c4a6e',
+    lineHeight: '1.6',
+    marginBottom: '12px',
+  },
+  demoInfoLink: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    fontSize: '14px',
+    fontWeight: '600',
+    color: '#0284c7',
+    textDecoration: 'none',
+    transition: 'all 0.2s ease-in-out',
+  } as React.CSSProperties,
   guestAccess: {
     marginBottom: '30px',
   },

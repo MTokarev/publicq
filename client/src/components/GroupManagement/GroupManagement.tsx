@@ -354,7 +354,7 @@ const DeleteConfirmationModal = ({ isOpen, groupId, groupTitle, onConfirm, onCan
           </div>
         ) : (
           <div style={styles.assignmentSection}>
-            <p style={styles.noAssignments}>✓ No assignments are associated with this group.</p>
+            <p style={styles.noAssignments}><img src="/images/icons/check.svg" alt="Check" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle', display: 'inline-block'}} /> No assignments are associated with this group.</p>
           </div>
         )}
         <p style={styles.keyboardShortcuts}>

@@ -824,7 +824,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
         };
       case ModuleStatus.InProgress:
         return {
-          badge: '⏳ In Progress',
+          badge: <><img src="/images/icons/progress.svg" alt="" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle', display: 'inline-block'}} /> In Progress</>,
           badgeStyle: styles.inProgressBadge,
           buttonText: 'Continue Module',
           buttonStyle: styles.continueModuleButton,
@@ -1151,6 +1151,7 @@ const AssignmentExecution: React.FC<AssignmentExecutionProps> = ({
                                 ? '#fed7aa' // Orange border for ≤30 minutes
                                 : '#bbf7d0' // Green border for >30 minutes or not started
                             }}>
+                              <img src="/images/icons/time.svg" alt="" style={{width: '14px', height: '14px', marginRight: '6px', verticalAlign: 'middle', display: 'inline-block'}} />
                               {timeInfo.remainingDisplay}
                             </span>
                           </div>

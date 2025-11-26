@@ -987,15 +987,13 @@ const Questions: React.FC<QuestionsProps> = ({
             }
             
             .questions-question-header {
-              flex-direction: column !important;
-              align-items: flex-start !important;
-              gap: 8px !important;
               margin-bottom: 16px !important;
             }
             
             .questions-question-header h3 {
-              font-size: 18px !important;
+              font-size: 16px !important;
               margin: 0 !important;
+              white-space: nowrap !important;
             }
             
             .questions-question-text {
@@ -1035,16 +1033,20 @@ const Questions: React.FC<QuestionsProps> = ({
             }
             
             .questions-main-buttons {
-              flex-direction: column !important;
-              gap: 12px !important;
+              display: flex !important;
+              flex-direction: row !important;
+              gap: 8px !important;
               width: 100% !important;
+              justify-content: space-between !important;
             }
             
             .questions-navigation-button,
             .questions-submit-button {
-              width: 100% !important;
-              padding: 12px !important;
-              font-size: 16px !important;
+              flex: 1 !important;
+              padding: 10px 8px !important;
+              font-size: 13px !important;
+              min-width: 0 !important;
+              white-space: nowrap !important;
             }
             
             .questions-go-to-container {
@@ -1180,10 +1182,21 @@ const Questions: React.FC<QuestionsProps> = ({
             
             .questions-navigation-button,
             .questions-submit-button {
-              padding: 10px 8px !important;
-              font-size: 14px !important;
-              min-height: 40px !important;
-              word-break: break-word !important;
+              flex: 1 !important;
+              padding: 8px 6px !important;
+              font-size: 11px !important;
+              min-height: 36px !important;
+              min-width: 0 !important;
+              white-space: nowrap !important;
+              overflow: hidden !important;
+              text-overflow: ellipsis !important;
+            }
+            
+            .questions-main-buttons {
+              display: flex !important;
+              flex-direction: row !important;
+              gap: 4px !important;
+              width: 100% !important;
             }
             
             .questions-go-to-container {
@@ -1286,16 +1299,18 @@ const Questions: React.FC<QuestionsProps> = ({
         {timeRemaining?.isExpired && (
           <div className={cssStyles.expiredOverlay}>
             <div className={cssStyles.expiredMessage}>
-              <div className={cssStyles.expiredIcon}>⏰</div>
+              <div className={cssStyles.expiredIcon}><img src="/images/icons/time.svg" alt="Time expired" style={{width: '48px', height: '48px'}} /></div>
               <div className={cssStyles.expiredText}>Time Expired</div>
             </div>
           </div>
         )}
         
         <div className={cn(cssStyles.questionHeader, "questions-question-header")}>
-          <h3>Question {currentQuestionIndex + 1}</h3>
-          <div className={cssStyles.questionType}>
-            {formatQuestionType(currentQuestion.type)}
+          <div className={cssStyles.questionHeaderTop}>
+            <h3>Question {currentQuestionIndex + 1}</h3>
+            <div className={cssStyles.questionType}>
+              {formatQuestionType(currentQuestion.type)}
+            </div>
           </div>
         </div>
 
@@ -1548,7 +1563,7 @@ const Questions: React.FC<QuestionsProps> = ({
                 )}
                 disabled={isSubmitting || timeRemaining?.isExpired}
               >
-                {isSubmitting ? 'Submitting...' : 'Submit Module'}
+                {isSubmitting ? 'Submitting...' : 'Submit'}
               </button>
             )}
           </div>
@@ -1587,7 +1602,7 @@ const Questions: React.FC<QuestionsProps> = ({
                 />
                 {showErrorPopup && (
                   <div className={cssStyles.errorMessage} style={{ color: '#d32f2f', marginTop: '8px', fontSize: '14px' }}>
-                    <img src="/images/icons/warning.svg" alt="Warning" style={{width: '16px', height: '16px', marginRight: '4px', verticalAlign: 'middle'}} /> Please enter a number between 1 and {moduleVersion.questions.length}
+                    <img src="/images/icons/warning.svg" alt="Warning" style={{width: '16px', height: '16px', marginRight: '6px', verticalAlign: 'middle', display: 'inline-block'}} /> Please enter a number between 1 and {moduleVersion.questions.length}
                   </div>
                 )}
               </div>
@@ -1717,7 +1732,7 @@ const Questions: React.FC<QuestionsProps> = ({
               <h3 className={cssStyles.modalTitle}>Time Expired</h3>
             </div>
             <div className={cssStyles.modalBody}>
-              <div className={cssStyles.timeExpiredIcon}>⏰</div>
+              <div className={cssStyles.timeExpiredIcon}><img src="/images/icons/time.svg" alt="Time expired" style={{width: '48px', height: '48px'}} /></div>
               <div className={cssStyles.modalContent}>
                 <p className={cssStyles.modalText}>
                   <strong>Time has run out!</strong>

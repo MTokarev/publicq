@@ -1225,7 +1225,7 @@ const AssignmentManagement = ({ assignmentManagementData, setAssignmentManagemen
       />
       <div className={cssStyles.container}>
         <div className={cssStyles.header}>
-          <h2 className={cssStyles.title} style={{display: 'flex', alignItems: 'center'}}><img src="/images/icons/clipboard.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Assignment Management</h2>
+          <h2 className={cssStyles.title}><img src="/images/icons/clipboard.svg" alt="" style={{width: '28px', height: '28px', marginRight: '10px'}} />Assignment Management</h2>
           <button 
             onClick={handleCreateAssignment}
             className={cn(cssStyles.createButton, "assignment-management-create-button")}

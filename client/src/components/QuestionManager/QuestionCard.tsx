@@ -204,6 +204,7 @@ const styles = {
     alignItems: 'center',
     gap: '12px',
     marginBottom: '12px',
+    flexWrap: 'nowrap' as const,
   },
   questionNumber: {
     backgroundColor: '#dbeafe',

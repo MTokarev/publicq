@@ -21,6 +21,8 @@
   margin: 0;
   color: var(--color-gray-900);
   letter-spacing: var(--letter-spacing-tight);
+  display: flex;
+  align-items: center;
 }
 
 /* Search and sections */
@@ -294,6 +296,24 @@
   font-size: 12px;
   font-weight: 500;
   border-radius: 6px;
+}
+
+.settingsCell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.settingTag {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: #e0e7ff;
+  color: #4338ca;
+  white-space: nowrap;
 }
 
 /* Pagination */

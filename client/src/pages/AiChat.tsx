@@ -408,7 +408,7 @@ Do NOT repeat any tools that show SUCCESS status above.`}`;
         borderRadius: '8px',
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
       }}>
-        <div style={{ fontSize: '48px', marginBottom: '20px' }}>⏳</div>
+        <div style={{ fontSize: '48px', marginBottom: '20px' }}><img src="/images/icons/progress.svg" alt="Loading" style={{width: '48px', height: '48px'}} /></div>
         <p style={{ color: '#666' }}>Checking AI status...</p>
       </div>
     );

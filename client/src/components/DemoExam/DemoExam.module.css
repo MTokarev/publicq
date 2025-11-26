@@ -4,7 +4,7 @@
 
 .startScreen {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-gray-200) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,25 +23,26 @@
 .demoBadge {
   display: inline-flex;
   align-items: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background-color: rgba(16, 185, 129, 0.15);
+  color: var(--color-success-dark, #047857);
   padding: 8px 16px;
   border-radius: 20px;
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 20px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .title {
   font-size: 32px;
   font-weight: 700;
-  color: #2d3748;
+  color: var(--color-gray-900);
   margin: 0 0 16px 0;
 }
 
 .description {
   font-size: 18px;
-  color: #4a5568;
+  color: var(--color-gray-600);
   line-height: 1.6;
   margin-bottom: 32px;
 }
@@ -66,21 +67,21 @@
 
 .feature strong {
   display: block;
-  color: #2d3748;
+  color: var(--color-gray-900);
   margin-bottom: 4px;
   font-size: 16px;
 }
 
 .feature p {
   margin: 0;
-  color: #718096;
+  color: var(--color-gray-600);
   font-size: 14px;
   line-height: 1.4;
 }
 
 .info {
-  background: #edf2f7;
-  border-left: 4px solid #667eea;
+  background: var(--color-gray-50);
+  border-left: 4px solid var(--color-primary);
   padding: 16px;
   border-radius: 8px;
   margin-bottom: 24px;
@@ -88,14 +89,14 @@
 
 .info p {
   margin: 0;
-  color: #4a5568;
+  color: var(--color-gray-700);
   font-size: 14px;
   line-height: 1.5;
 }
 
 .navigationTips {
-  background: #f0f9ff;
-  border-left: 4px solid #3b82f6;
+  background: var(--color-blue-50);
+  border-left: 4px solid var(--color-primary);
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 24px;
@@ -103,7 +104,7 @@
 
 .tipsTitle {
   margin: 0 0 12px 0;
-  color: #2d3748;
+  color: var(--color-gray-900);
   font-size: 18px;
   font-weight: 600;
   display: flex;
@@ -113,7 +114,7 @@
 .tipsList {
   margin: 0;
   padding-left: 20px;
-  color: #4a5568;
+  color: var(--color-gray-700);
   font-size: 14px;
   line-height: 1.6;
 }
@@ -127,8 +128,8 @@
 }
 
 .previousScore {
-  background: #f7fafc;
-  border: 2px solid #e2e8f0;
+  background: var(--color-gray-50);
+  border: 2px solid var(--color-gray-200);
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 24px;
@@ -137,7 +138,7 @@
 
 .previousScore h3 {
   margin: 0 0 12px 0;
-  color: #2d3748;
+  color: var(--color-gray-900);
   font-size: 18px;
 }
 
@@ -151,11 +152,11 @@
 .scoreLarge {
   font-size: 48px;
   font-weight: 700;
-  color: #667eea;
+  color: var(--color-primary);
 }
 
 .scoreDetails {
-  color: #718096;
+  color: var(--color-gray-600);
   font-size: 14px;
 }
 
@@ -169,29 +170,33 @@
 .retakeButton {
   flex: 1;
   padding: 16px 32px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: rgba(59, 130, 246, 0.85);
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.2s ease;
   min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .startButton:hover,
 .retakeButton:hover {
+  background-color: rgba(59, 130, 246, 0.95);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
 }
 
 .exitButton {
   flex: 1;
   padding: 16px 32px;
   background: white;
-  color: #4a5568;
-  border: 2px solid #e2e8f0;
+  color: var(--color-gray-700);
+  border: 2px solid var(--color-gray-300);
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
@@ -201,15 +206,15 @@
 }
 
 .exitButton:hover {
-  background: #f7fafc;
-  border-color: #cbd5e0;
+  background: var(--color-gray-50);
+  border-color: var(--color-gray-400);
 }
 
 /* ==================== RESULTS SCREEN ==================== */
 
 .resultsScreen {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-gray-200) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -238,13 +243,13 @@
 .resultsTitle {
   font-size: 36px;
   font-weight: 700;
-  color: #2d3748;
+  color: var(--color-gray-900);
   margin: 0 0 12px 0;
 }
 
 .resultsSubtitle {
   font-size: 20px;
-  color: #4a5568;
+  color: var(--color-gray-700);
   margin-bottom: 32px;
 }
 
@@ -256,8 +261,8 @@
 }
 
 .statCard {
-  background: #f7fafc;
-  border: 2px solid #e2e8f0;
+  background: var(--color-gray-50);
+  border: 2px solid var(--color-gray-200);
   border-radius: 12px;
   padding: 20px;
   display: flex;
@@ -268,18 +273,18 @@
 .statValue {
   font-size: 32px;
   font-weight: 700;
-  color: #667eea;
+  color: var(--color-primary);
 }
 
 .statLabel {
   font-size: 14px;
-  color: #718096;
+  color: var(--color-gray-600);
   font-weight: 500;
 }
 
 .resultsInfo {
-  background: #edf2f7;
-  border-left: 4px solid #48bb78;
+  background: var(--color-gray-50);
+  border-left: 4px solid var(--color-success);
   padding: 16px;
   border-radius: 8px;
   margin-bottom: 24px;
@@ -288,7 +293,7 @@
 
 .resultsInfo p {
   margin: 0;
-  color: #4a5568;
+  color: var(--color-gray-700);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -301,7 +306,7 @@
 }
 
 .demoBanner {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-blue-700) 100%);
   color: white;
   padding: 12px 20px;
   text-align: center;
@@ -323,12 +328,12 @@
 }
 
 .comingSoon h2 {
-  color: #2d3748;
+  color: var(--color-gray-900);
   margin: 0 0 16px 0;
 }
 
 .comingSoon p {
-  color: #4a5568;
+  color: var(--color-gray-700);
   line-height: 1.6;
   margin-bottom: 24px;
 }
