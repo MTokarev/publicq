@@ -250,7 +250,7 @@ const Questions: React.FC<QuestionsProps> = ({
     const interval = setInterval(updateTimer, 1000);
 
     return () => clearInterval(interval);
-  }, [demoMode, demoStartTime, timerStartTime, initialTimeRemaining, showTimeExpiredModal]);
+  }, [demoMode, demoStartTime, timerStartTime, initialTimeRemaining, showTimeExpiredModal, moduleVersion?.durationInMinutes]);
 
   const loadModuleData = async () => {
     if (!state || !state.assignment || !state.groupMember || !state.user) {
