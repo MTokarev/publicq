@@ -19,7 +19,7 @@
 
 .hero {
   text-align: center;
-  padding: var(--spacing-3xl) var(--spacing-2xl);
+  padding: var(--spacing-3xl) var(--spacing-2xl) var(--spacing-xl);
   background-color: var(--color-white);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
@@ -194,8 +194,8 @@
 
 /* Footer Styles */
 .footer {
-  margin-top: var(--spacing-3xl);
-  padding-top: var(--spacing-2xl);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-md);
   border-top: var(--border-width) solid var(--color-gray-200);
 }
 
@@ -203,7 +203,9 @@
   font-size: var(--font-size-sm);
   color: var(--color-gray-600);
   margin: 0;
+  margin-bottom: 0;
   text-align: center;
+  line-height: 1.2;
 }
 
 .footerLink {
