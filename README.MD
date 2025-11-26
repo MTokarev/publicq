@@ -716,6 +716,16 @@ These icons are proprietary assets and are not covered by the project's open-sou
 
 For icon licensing inquiries or commercial use, please contact the project maintainer.
 
+## 📄 License
+
+This project is licensed under the terms specified in the LICENSE file.
+
+**Note:** Icons located in `/client/public/images/icons/` are licensed separately and are not covered by the project's open-source license. See the [Icons](#-icons) section above for details.
+
+---
+
+Made with ❤️ by the Mikhail Tokarev
+
 ## 🔍 Technical Notes
 
 ### Default Configuration
@@ -744,11 +754,3 @@ For icon licensing inquiries or commercial use, please contact the project maint
 - Comprehensive logging with structured data
 - Error tracking and reporting
 - Audit trails for security compliance
-
-## 📄 License
-
-This project is licensed under the terms specified in the LICENSE file.
-
----
-
-Made with ❤️ by the Mikhail Tokarev
