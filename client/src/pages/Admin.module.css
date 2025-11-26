@@ -367,6 +367,10 @@
     gap: var(--spacing-md);
   }
   
+  .sectionInfo {
+    display: none;
+  }
+  
   .sectionDropdown {
     display: flex !important;
   }
