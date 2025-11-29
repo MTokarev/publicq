@@ -26,20 +26,20 @@
   font-weight: var(--font-weight-semibold);
   border-radius: var(--border-radius-md);
   border: none;
-  background-color: var(--color-purple-600);
+  background-color: rgba(249, 115, 22, 0.85);
   color: var(--color-white);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.2);
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
 }
 
 .exportButton:hover {
-  background-color: var(--color-purple-700);
+  background-color: rgba(249, 115, 22, 0.95);
   transform: translateY(-1px);
-  box-shadow: 0 6px 8px -1px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 6px 8px -1px rgba(249, 115, 22, 0.3);
 }
 
 .title {
