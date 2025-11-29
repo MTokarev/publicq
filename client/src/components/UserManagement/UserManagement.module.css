@@ -2,10 +2,10 @@
 
 /* Main container */
 .container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: var(--spacing-xl);
-  background-color: var(--color-gray-50);
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: white;
   min-height: calc(100vh - 80px);
 }
 
