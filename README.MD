@@ -718,9 +718,9 @@ For icon licensing inquiries or commercial use, please contact the project maint
 
 ## 📄 License
 
-This project is licensed under the terms specified in the LICENSE file.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-**Note:** Icons located in `/client/public/images/icons/` are licensed separately and are not covered by the project's open-source license. See the [Icons](#-icons) section above for details.
+**Note:** Icons located in `/client/public/images/icons/` are licensed separately and are not covered by the MIT license. See the [Icons](#-icons) section above for details.
 
 ---
 
