@@ -18,7 +18,7 @@ on:
         type: string
 
 permissions:
-  contents: write
+  contents: write # required for creating releases
 
 jobs:
   build-and-publish:
@@ -42,22 +42,25 @@ jobs:
             # Auto-increment from Docker Hub
             $response = Invoke-RestMethod -Uri "https://hub.docker.com/v2/repositories/${{ vars.DOCKERHUB_USERNAME }}/publicq-app/tags/?page_size=100"
             
-            $versions = $response.results.name | Where-Object { $_ -match '^\d+\.\d+\.\d+$' } | Sort-Object { [version]$_ }
+            $versions = @($response.results.name | Where-Object { $_ -match '^\d+\.\d+\.\d+$' })
             
             if ($versions.Count -eq 0) {
               $newVersion = "1.0.0"
+              Write-Host "No existing versions found. Starting with: $newVersion"
             }
             else {
-              $latest = $versions[-1]
+              $sortedVersions = $versions | Sort-Object { [version]$_ }
+              $latest = $sortedVersions[-1]
+              Write-Host "Latest version found: $latest"
+              
               $parts = $latest.Split('.')
               $major = [int]$parts[0]
               $minor = [int]$parts[1]
               $patch = [int]$parts[2] + 1
               
               $newVersion = "$major.$minor.$patch"
+              Write-Host "Auto-incremented version: $newVersion"
             }
-            
-            Write-Host "Auto-incremented version: $newVersion"
           }
           
           "new_version=$newVersion" >> $env:GITHUB_OUTPUT
