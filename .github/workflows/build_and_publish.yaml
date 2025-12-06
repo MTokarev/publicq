@@ -10,6 +10,12 @@ on:
       - 'Dockerfile'
       - 'docker-compose.yml'
       - '.github/workflows/build_and_publish.yaml'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g., 1.2.3) - leave empty for auto-increment'
+        required: false
+        type: string
 
 jobs:
   build-and-publish:
@@ -18,14 +24,61 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Determine version
+        id: version
+        shell: pwsh
+        run: |
+          # Check if version was manually provided
+          $manualVersion = "${{ github.event.inputs.version }}"
+          
+          if ($manualVersion) {
+            $newVersion = $manualVersion
+            Write-Host "Using manually provided version: $newVersion"
+          }
+          else {
+            # Auto-increment from Docker Hub
+            $response = Invoke-RestMethod -Uri "https://hub.docker.com/v2/repositories/${{ vars.DOCKERHUB_USERNAME }}/publicq-app/tags/?page_size=100"
+            
+            $versions = $response.results.name | Where-Object { $_ -match '^\d+\.\d+\.\d+$' } | Sort-Object { [version]$_ }
+            
+            if ($versions.Count -eq 0) {
+              $newVersion = "1.0.0"
+            }
+            else {
+              $latest = $versions[-1]
+              $parts = $latest.Split('.')
+              $major = [int]$parts[0]
+              $minor = [int]$parts[1]
+              $patch = [int]$parts[2] + 1
+              
+              $newVersion = "$major.$minor.$patch"
+            }
+            
+            Write-Host "Auto-incremented version: $newVersion"
+          }
+          
+          "new_version=$newVersion" >> $env:GITHUB_OUTPUT
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build Docker image
-        run: docker build -t ${{ vars.DOCKERHUB_USERNAME }}/publicq-app:latest .
+      - name: Build and push Docker images
+        shell: pwsh
+        run: |
+          $version = "${{ steps.version.outputs.new_version }}"
+          docker build -t ${{ vars.DOCKERHUB_USERNAME }}/publicq-app:latest -t ${{ vars.DOCKERHUB_USERNAME }}/publicq-app:$version .
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/publicq-app:latest
+          docker push ${{ vars.DOCKERHUB_USERNAME }}/publicq-app:$version
 
-      - name: Publish Docker image
-        run: docker push ${{ vars.DOCKERHUB_USERNAME }}/publicq-app:latest
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.version.outputs.new_version }}
+          generate_release_notes: true
+          body: |
+            Docker images published:
+            - `${{ vars.DOCKERHUB_USERNAME }}/publicq-app:latest`
+            - `${{ vars.DOCKERHUB_USERNAME }}/publicq-app:${{ steps.version.outputs.new_version }}`
