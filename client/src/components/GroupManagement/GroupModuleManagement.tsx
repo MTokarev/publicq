@@ -350,10 +350,6 @@ const GroupModuleManagement = ({ isOpen, group, onClose, onGroupUpdated }: Group
   };
 
   const handleRemoveModule = async (memberId: string) => {
-    if (!window.confirm('Are you sure you want to remove this module from the group?')) {
-      return;
-    }
-
     setLoading(true);
     setError('');
 

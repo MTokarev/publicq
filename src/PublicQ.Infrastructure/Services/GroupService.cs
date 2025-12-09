@@ -301,8 +301,11 @@ public class GroupService(
         
         var groupMember = await dbContext
             .GroupMembers
+            .AsSingleQuery()
             .Include(gm => gm.Group)
                 .ThenInclude(g => g.GroupMemberEntities)
+                    .ThenInclude(gm => gm.AssessmentModule)
+                        .ThenInclude(m => m.Versions)
             .FirstOrDefaultAsync(gm => gm.Id == groupMemberId, cancellationToken);
 
         if (groupMember is null)
