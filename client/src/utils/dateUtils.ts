@@ -9,7 +9,7 @@
  */
 export const formatDateToLocal = (dateString: string): string => {
   // Handle dates with timezone offsets (e.g., "2025-11-18T19:56:00-08:00") or UTC (ending with Z)
-  const date = new Date(dateString);
+  const date = parseUtcDate(dateString);
   return date.toLocaleDateString(undefined, {
     year: 'numeric',
     month: 'short',
@@ -26,7 +26,7 @@ export const formatDateToLocal = (dateString: string): string => {
  */
 export const formatDateOnlyToLocal = (dateString: string): string => {
   // Handle dates with timezone offsets (e.g., "2025-11-18T19:56:00-08:00") or UTC (ending with Z)
-  const date = new Date(dateString);
+  const date = parseUtcDate(dateString);
   return date.toLocaleDateString(undefined, {
     year: 'numeric',
     month: 'short',

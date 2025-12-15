@@ -301,7 +301,7 @@ public class GroupService(
         
         var groupMember = await dbContext
             .GroupMembers
-            .AsSingleQuery()
+            .AsSplitQuery()
             .Include(gm => gm.Group)
                 .ThenInclude(g => g.GroupMemberEntities)
                     .ThenInclude(gm => gm.AssessmentModule)
