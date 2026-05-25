@@ -262,12 +262,26 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .WithMany(m => m.ModuleProgress)
             .HasForeignKey(m => m.ExamTakerAssignmentId)
             .OnDelete(DeleteBehavior.Cascade);
-        
+
+        // Each (ExamTakerAssignment, GroupMember) combination must have at most one
+        // ModuleProgress row. Prevents duplicate progress records from concurrent
+        // "launch module" requests (e.g. double-click on Launch).
+        modelBuilder.Entity<ModuleProgressEntity>()
+            .HasIndex(m => new { m.ExamTakerAssignmentId, m.GroupMemberId })
+            .IsUnique();
+
         modelBuilder.Entity<QuestionResponseEntity>()
             .HasOne(q => q.ModuleProgress)
             .WithMany(m => m.QuestionResponses)
             .HasForeignKey(q => q.ModuleProgressId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        // Each (ModuleProgress, Question) combination must have at most one response.
+        // Prevents duplicate answer rows from concurrent submit-answer requests
+        // (double-click Next, automatic retry on slow network, etc.).
+        modelBuilder.Entity<QuestionResponseEntity>()
+            .HasIndex(q => new { q.ModuleProgressId, q.QuestionId })
+            .IsUnique();
         
         modelBuilder.Entity<ExamTakerEntity>()
             .HasIndex(e => e.NormalizedEmail)

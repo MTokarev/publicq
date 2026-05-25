@@ -229,6 +229,27 @@ public class SessionService(
             assessmentModuleId, 
             cancellationToken);
 
+        // Fast path: if a progress for this slot already exists, return it.
+        var groupMemberId = groupStateResponse.Data.GroupMembers
+            .First(gm => gm.AssessmentModuleId == assessmentModuleId).Id;
+
+        var existingProgress = await dbContext.ModuleProgress
+            .AsNoTracking()
+            .Include(mp => mp.QuestionResponses)
+            .Include(mp => mp.AssessmentModuleVersion)
+            .Where(mp => mp.ExamTakerId == userId &&
+                         mp.ExamTakerAssignmentId == examAssignment.Id &&
+                         mp.GroupMemberId == groupMemberId)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (existingProgress is not null)
+        {
+            return Response<ModuleProgressDto, GenericOperationStatuses>.Success(
+                existingProgress.ConvertToDto(),
+                GenericOperationStatuses.Completed,
+                "Module progress already exists.");
+        }
+
         var moduleProgress = new ModuleProgressEntity
         {
             // Randomization seeds are only generated if randomization is enabled for the assignment
@@ -237,20 +258,48 @@ public class SessionService(
             ExamTakerId = userId,
             ExamTakerAssignmentId = examAssignment.Id,
             AssessmentModuleVersionId = latestVersion.Data!.Id,
-            GroupMemberId = groupStateResponse.Data.GroupMembers.First(gm =>
-                gm.AssessmentModuleId == assessmentModuleId).Id,
+            GroupMemberId = groupMemberId,
             HasStarted = true,
             StartedAtUtc = DateTime.UtcNow,
             DurationInMinutes = latestVersion.Data.DurationInMinutes,
         };
-        
-        var entityEntry = await dbContext.ModuleProgress.AddAsync(moduleProgress, cancellationToken);
-        await dbContext.SaveChangesAsync(cancellationToken);
-        
+
+        await dbContext.ModuleProgress.AddAsync(moduleProgress, cancellationToken);
+        try
+        {
+            await dbContext.SaveChangesAsync(cancellationToken);
+        }
+        catch (DbUpdateException ex)
+        {
+            // Concurrent request beat us. Unique index rejected our insert.
+            // Detach the failed entity, re-read the winner, return it.
+            logger.LogInformation(ex,
+                "Concurrent module-progress insert detected for user {UserId} module {ModuleId}; returning existing row.",
+                userId, assessmentModuleId);
+
+            dbContext.Entry(moduleProgress).State = EntityState.Detached;
+
+            var winner = await dbContext.ModuleProgress
+                .AsNoTracking()
+                .Include(mp => mp.QuestionResponses)
+                .Include(mp => mp.AssessmentModuleVersion)
+                .Where(mp => mp.ExamTakerId == userId &&
+                             mp.ExamTakerAssignmentId == examAssignment.Id &&
+                             mp.GroupMemberId == groupMemberId)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (winner is null) throw;
+
+            return Response<ModuleProgressDto, GenericOperationStatuses>.Success(
+                winner.ConvertToDto(),
+                GenericOperationStatuses.Completed,
+                "Module progress already exists.");
+        }
+
         logger.LogInformation("Module progress created for user {UserId}.", userId);
-        
+
         return Response<ModuleProgressDto, GenericOperationStatuses>.Success(
-            entityEntry.Entity.ConvertToDto(), 
+            moduleProgress.ConvertToDto(),
             GenericOperationStatuses.Completed,
             "Module progress created successfully.");
     }
@@ -445,7 +494,6 @@ public class SessionService(
 
         var userProgress = await dbContext.ModuleProgress
             .Where(mp => mp.Id == userProgressId)
-            .Include(mp => mp.QuestionResponses)
             .FirstOrDefaultAsync(cancellationToken);
 
         if (userProgress is null)
@@ -484,8 +532,9 @@ public class SessionService(
                 answerResponse.Errors);
         }
         
-        var existingResponse = userProgress.QuestionResponses
-            .FirstOrDefault(qr => qr.QuestionId == dto.QuestionId);
+        var existingResponse = await dbContext.QuestionResponses
+            .Where(qr => qr.ModuleProgressId == userProgress.Id && qr.QuestionId == dto.QuestionId)
+            .FirstOrDefaultAsync(cancellationToken);
         
         if (existingResponse != null)
         {
@@ -513,6 +562,8 @@ public class SessionService(
                 existingResponse.TextResponse = dto.TextResponse;
                 existingResponse.RespondedAtUtc = DateTime.UtcNow;
             }
+
+            await dbContext.SaveChangesAsync(cancellationToken);
         }
         // No existing response, create a new one
         else
@@ -531,9 +582,20 @@ public class SessionService(
                 RespondedAtUtc = DateTime.UtcNow,
             };
             await dbContext.QuestionResponses.AddAsync(newResponse, cancellationToken);
+
+            try
+            {
+                await dbContext.SaveChangesAsync(cancellationToken);
+            }
+            catch (DbUpdateException ex)
+            {
+                // Concurrent submission beat us; unique index rejected our insert.
+                logger.LogInformation(ex,
+                    "Concurrent answer-submit detected for question {QuestionId} in progress {UserProgressId}; existing response wins.",
+                    dto.QuestionId, userProgressId);
+                dbContext.Entry(newResponse).State = EntityState.Detached;
+            }
         }
-        
-        await dbContext.SaveChangesAsync(cancellationToken);
         
         return Response<GenericOperationStatuses>.Success(GenericOperationStatuses.Completed,
             "Answer submitted successfully.");
